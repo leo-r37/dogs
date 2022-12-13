@@ -14,7 +14,12 @@ const getDogs = async (req, res) => {
             [Op.like]: `%${name}%`,
           },
         },
-        include: Temperament,
+        include: {
+          model: Temperament,
+          through: {
+            attributes: []
+          }
+        },
       });
       const axiosDogs = await axios.get("https://api.thedogapi.com/v1/breeds");
       axiosDogs.data.forEach((d) => {
@@ -40,7 +45,12 @@ const getDogs = async (req, res) => {
       let dogsToSend = [];
       const dbDogs = await Dog.findAll({
         attributes: ["image", "name", "weight"],
-        include: Temperament,
+        include: {
+          model: Temperament,
+          through: {
+            attributes: []
+          }
+        },
       });
       const axiosDogs = await axios.get("https://api.thedogapi.com/v1/breeds");
 
