@@ -1,38 +1,41 @@
-.App {
-  text-align: center;
+/* tittles */
+@import url("https://fonts.googleapis.com/css2?family=Rubik+Vinyl&display=swap");
+/* normal text */
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;800&display=swap");
+
+
+* {
+  padding: 0;
+  margin: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  /* background-image: url('./imgs/background.jpg'); */
+  /* background-position: center;  */
+  /* background-repeat: no-repeat;  */
+  /* background-size: cover; */
+  background-color: #fbab7e;
+  background-image: linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
+  font-family: "Exo 2", sans-serif;
+  /* font-family: "Rubik Vinyl", cursive; */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1 {
+  font-size: 3.75rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.primaryButton {
+  background-color: #ff7f00;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  padding: .625rem;
+  border: none;
+  /* margin-top: 1.25rem;
+  margin-bottom: 1.25rem; */
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.primaryButton:hover {
+  background-color: #fff100;
+  color: rgb(34, 34, 34);
 }

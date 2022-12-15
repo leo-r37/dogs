@@ -16,6 +16,7 @@ const getDogs = async (req, res) => {
         },
         include: {
           model: Temperament,
+          attributes: ['name'],
           through: {
             attributes: []
           }
@@ -47,6 +48,7 @@ const getDogs = async (req, res) => {
         attributes: ["image", "name", "weight"],
         include: {
           model: Temperament,
+          attributes: ['name'],
           through: {
             attributes: []
           }

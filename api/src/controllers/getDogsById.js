@@ -9,6 +9,7 @@ const getDogsById = async (req, res) => {
         attributes: { exclude: ["id"] },
         include: {
           model: Temperament,
+          attributes: ['name'],
           through: {
             attributes: []
           }
