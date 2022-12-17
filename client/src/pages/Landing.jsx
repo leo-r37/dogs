@@ -1,6 +1,6 @@
 import s from "./Landing.module.css";
-import { Link } from "react-router-dom";
 import img from "../imgs/dogPaw-logo.png";
+import PrimaryButton from "../components/PrimaryButton";
 
 const Landing = () => {
   return (
@@ -10,9 +10,7 @@ const Landing = () => {
         <h1 className={s.title}>DogPaw</h1>
         <h2>Dog's breeds database</h2>
         <p>Find the info about all dog's breeds, and create your owns!</p>
-        <Link to="/home" className={s.startButton}>
-          <div className='primaryButton'>START</div>
-        </Link>
+        <PrimaryButton to='/breeds' text='START'/>
       </div>
       <div className={s.div}></div>
     </div>

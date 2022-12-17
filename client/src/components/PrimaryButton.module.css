@@ -1,0 +1,12 @@
+.startButton {
+    width: 50%;
+    /* border: 1px solid black; */
+    align-self: flex-end;
+    text-align: center;
+    text-decoration: none;
+    font-size: inherit;
+    font-weight: inherit;
+    font-family: inherit;
+    margin-top: 30px;
+  }
+  

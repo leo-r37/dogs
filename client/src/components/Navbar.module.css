@@ -1,3 +1,39 @@
-.div {
-    background-color: red;
+.container {
+    /* background-color: red; */
+    height: 10vh;
+    display: flex;
 }
+
+.div {
+    width: 50vw;
+    box-sizing: border-box;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    padding: 20px
+}
+
+.buttons {
+    justify-content: flex-end;
+}
+
+.unselected {
+    text-decoration: none;
+    color: #fff;
+    
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.selected {
+    text-decoration: none;
+    color: #fff100;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.title {
+    font-size: 40px;
+    font-family: "Rubik Vinyl", cursive;
+  }
