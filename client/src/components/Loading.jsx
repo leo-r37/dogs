@@ -6,8 +6,8 @@ import "./Loading.css";
 const Loading = () => {
   return (
     <div className="loadingContainer">
-      <div class="loadingio-spinner-double-ring-v46rtn9qqgf">
-      <div class="ldio-6rhf3o5iy3f">
+      <div className="loadingio-spinner-double-ring-v46rtn9qqgf">
+      <div className="ldio-6rhf3o5iy3f">
         <div></div>
         <div></div>
         <div>

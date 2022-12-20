@@ -1,0 +1,44 @@
+.container {
+  margin: 50px;
+  background-color: #fff;
+  border: 1px solid rgb(189, 189, 189);
+  border-radius: 5px;
+  width: 300px;
+  height: 400px;
+  overflow: hidden;
+  box-shadow: 2px 2px 10px rgb(173, 127, 0);
+}
+
+.imageContainer {
+  height: 60%;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+}
+
+.infoContainer {
+    padding: 10px;
+    box-sizing: border-box;
+    height: 40%;
+    border: 1px solid rgb(189, 189, 189);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.tempContainer {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.temp {
+    margin-top: 10px;
+    background-color: #ff7f00;
+    color: #fff;
+    padding: 5px 10px;
+}

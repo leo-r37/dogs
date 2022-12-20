@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import s from './PrimaryButton.module.css';
 
-const PrimaryButton = ({to, text}) => {
+const PrimaryButton = ({to, text, onClick}) => {
   return (
-    <Link to={to} className={s.startButton}>
+    <Link to={to} onClick={onClick} className={s.startButton}>
       <div className="primaryButton">{text}</div>
     </Link>
   );

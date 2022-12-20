@@ -1,18 +1,27 @@
 const initialState = {
-  count: 0,
+  loading: false,
+  breeds: [],
+  temperaments: [],
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "INCREMENT":
+    case 'LOADING_ON':
       return {
         ...state,
-        count: state.count + 1,
+        loading: true
       };
-    case "DECREMENT":
+    case 'GET_BREEDS':
       return {
         ...state,
-        count: state.count - 1,
+        loading: false,
+        breeds: action.payload
+      };
+    case "GET_TEMPERAMENTS":
+      return {
+        ...state,
+        loading: false,
+        temperaments: action.payload 
       };
     default:
       return { ...state };

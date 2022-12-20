@@ -1,6 +1,10 @@
+import { connect } from "react-redux";
+import { getBreeds } from "../redux/actions";
 import s from "./Landing.module.css";
+
 import img from "../imgs/dogPaw-logo.png";
 import PrimaryButton from "../components/PrimaryButton";
+
 
 const Landing = () => {
   return (
@@ -17,4 +21,10 @@ const Landing = () => {
   );
 };
 
-export default Landing;
+const mapDispatchToProps = (dispatch) => ({
+  getBreeds: () => dispatch(getBreeds()),
+});
+
+// export default Landing;
+export default connect(null, mapDispatchToProps)(Landing);
+
