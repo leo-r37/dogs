@@ -6,8 +6,16 @@ import Loading from "../components/Loading.jsx";
 import Navbar from "../components/Navbar.jsx";
 import BreedCard from "../components/BreedCard";
 import PageController from "../components/PageController";
+import SearchBar from "../components/SearchBar";
 
-const Breeds = ({ loading, breeds, getBreeds, firstElement, lastElement }) => {
+const Breeds = ({
+  loading,
+  breeds,
+  breedsByName,
+  getBreeds,
+  firstElement,
+  lastElement,
+}) => {
   if (breeds.length <= 0) getBreeds();
 
   return (
@@ -17,24 +25,42 @@ const Breeds = ({ loading, breeds, getBreeds, firstElement, lastElement }) => {
         <Loading />
       ) : (
         <div className={s.container}>
-          <PageController />
-          
-
-          <div className={s.cardsContainer}>
-            {[...breeds].slice(firstElement, lastElement).map((b, i) => {
-              return (
-                <BreedCard
-                  key={i}
-                  name={b.name}
-                  weight={b.weight}
-                  image={b.image}
-                  temperaments={b.temperaments}
-                />
-              );
-            })}
+          <div className={s.topBar}>
+            <div className={s.topBarDivs}></div>
+            <div className={s.topBarDivs}>
+              <SearchBar />
+            </div>
           </div>
 
-          <PageController />
+          <div className={s.main}>
+            <PageController />
+            <div className={s.cardsContainer}>
+              {breedsByName.length > 0
+                ? [...breedsByName].slice(firstElement, lastElement).map((b, i) => {
+                    return (
+                      <BreedCard
+                        key={i}
+                        name={b.name}
+                        weight={b.weight}
+                        image={b.image}
+                        temperaments={b.temperaments}
+                      />
+                    );
+                  })
+                : [...breeds].slice(firstElement, lastElement).map((b, i) => {
+                    return (
+                      <BreedCard
+                        key={i}
+                        name={b.name}
+                        weight={b.weight}
+                        image={b.image}
+                        temperaments={b.temperaments}
+                      />
+                    );
+                  })}
+            </div>
+            <PageController />
+          </div>
         </div>
       )}
     </div>
@@ -46,6 +72,7 @@ const mapStateToProps = (state) => ({
   breeds: state.breeds,
   firstElement: state.firstElement,
   lastElement: state.lastElement,
+  breedsByName: state.breedsByName,
 });
 
 const mapDispatchToProps = (dispatch) => ({

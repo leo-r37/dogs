@@ -1,6 +1,7 @@
 const initialState = {
   loading: false,
   breeds: [],
+  breedsByName: [],
   temperaments: [],
   currentPage: 1,
   itemsPerPage: 8,
@@ -65,7 +66,13 @@ const reducer = (state = initialState, action) => {
         ...state,
         currentPage: action.payload,
         firstElement: action.payload * state.itemsPerPage - state.itemsPerPage,
-        lastElement: (action.payload * state.itemsPerPage),
+        lastElement: action.payload * state.itemsPerPage,
+      };
+    case "GET_BREEDS_BY_NAME":
+      return {
+        ...state,
+        loading: false,
+        breedsByName: action.payload,
       };
     default:
       return { ...state };

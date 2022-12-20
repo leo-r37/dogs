@@ -41,3 +41,11 @@ export const lastPage = () => {
 export const setPage = (page) => {
   return {type: 'SET_PAGE', payload: page}
 };
+
+export const getBreedsByName = (name) => {
+  return async (dispatch) => {
+    dispatch(loadingOn());
+    let dogs = await axios.get(`http://localhost:3001/dogs?name=${name}`);
+    return dispatch({ type: "GET_BREEDS_BY_NAME", payload: dogs.data });
+  };
+};

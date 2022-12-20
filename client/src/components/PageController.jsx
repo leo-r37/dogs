@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 
 const PageController = ({
   breeds,
+  breedsByName,
   currentPage,
   itemsPerPage,
   nextPage,
@@ -22,10 +23,15 @@ const PageController = ({
   const [inputPage, setInputPage] = useState(currentPage);
 
   useEffect(() => {
-    setInputPage(currentPage)
-  }, [currentPage])
+    setInputPage(currentPage);
+  }, [currentPage]);
 
-  const numOfLastPage = Math.ceil(breeds.length / itemsPerPage);
+  let numOfLastPage;
+  if (breedsByName.length > 0) {
+    numOfLastPage = Math.ceil(breedsByName.length / itemsPerPage);
+  } else {
+    numOfLastPage = Math.ceil(breeds.length / itemsPerPage);
+  }
 
   const firstPageHandler = () => {
     firstPage();
@@ -45,8 +51,14 @@ const PageController = ({
   };
 
   const lastPageHandler = () => {
-    lastPage();
-    setInputPage(numOfLastPage);
+    if (breedsByName.length > 0) {
+      let numOfPage = Math.ceil(breedsByName.length / itemsPerPage);
+      setPage(numOfPage);
+      setInputPage(numOfLastPage);
+    } else {
+      lastPage();
+      setInputPage(numOfLastPage);
+    }
   };
 
   const inputKey = (e) => {
@@ -82,6 +94,7 @@ const PageController = ({
       </button>
 
       <input
+        className={s.input}
         value={inputPage}
         onChange={(e) => handleChange(e)}
         onKeyUp={(e) => inputKey(e)}
@@ -102,6 +115,7 @@ const mapStateToProps = (state) => ({
   breeds: state.breeds,
   currentPage: state.currentPage,
   itemsPerPage: state.itemsPerPage,
+  breedsByName: state.breedsByName,
 });
 
 const mapDispatchToProps = (dispatch) => ({

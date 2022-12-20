@@ -1,0 +1,73 @@
+.container {
+    background-color: antiquewhite;
+    border-radius: 5px;
+    width: 450px;
+    height: 35px;
+    display: flex;
+    overflow: hidden;
+}
+
+.inputDiv {
+    box-sizing: border-box;
+    width: 90%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input {
+    height: 70%;
+    width: 90%;
+    background-color: inherit;
+    border: none;
+    font-size: 20px;
+}
+
+.input:focus {
+    border: none;
+}
+
+/* .buttonDiv {
+    box-sizing: border-box;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    left: 20px;
+    align-self: center;
+    color: #fff;
+    font-size: 20px;
+    background-color: #ff7f00;
+    cursor: pointer;
+} */
+
+/* .buttonDiv {
+    box-sizing: border-box;
+    width: 10%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    color: #fff;
+    font-size: 20px;
+    background-color: #ff7f00;
+    cursor: pointer;
+} */
+
+.buttonDiv {
+    box-sizing: border-box;
+    width: 10%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    color: #ff7f00;
+    font-size: 20px;
+    cursor: pointer;
+}
