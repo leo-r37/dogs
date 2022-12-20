@@ -41,6 +41,32 @@ const reducer = (state = initialState, action) => {
         firstElement: state.firstElement - state.itemsPerPage,
         lastElement: state.lastElement - state.itemsPerPage,
       };
+    case "FIRST_PAGE":
+      return {
+        ...state,
+        currentPage: 1,
+        firstElement: 0,
+        lastElement: 8,
+      };
+    case "LAST_PAGE":
+      return {
+        ...state,
+        currentPage: Math.ceil(state.breeds.length / state.itemsPerPage),
+        firstElement:
+          Math.ceil(state.breeds.length / state.itemsPerPage) *
+            state.itemsPerPage -
+          state.itemsPerPage,
+        lastElement:
+          Math.ceil(state.breeds.length / state.itemsPerPage) *
+          state.itemsPerPage,
+      };
+    case "SET_PAGE":
+      return {
+        ...state,
+        currentPage: action.payload,
+        firstElement: action.payload * state.itemsPerPage - state.itemsPerPage,
+        lastElement: (action.payload * state.itemsPerPage),
+      };
     default:
       return { ...state };
   }

@@ -22,10 +22,22 @@ export const getBreeds = () => {
   };
 };
 
+export const firstPage = () => {
+  return {type: 'FIRST_PAGE'}
+}
+
+export const prevPage = () => {
+  return { type: "PREV_PAGE" };
+};
+
 export const nextPage = () => {
   return { type: "NEXT_PAGE" };
 };
 
-export const prevPage = () => {
-  return { type: "PREV_PAGE" };
+export const lastPage = () => {
+  return {type: 'LAST_PAGE'}
+};
+
+export const setPage = (page) => {
+  return {type: 'SET_PAGE', payload: page}
 };

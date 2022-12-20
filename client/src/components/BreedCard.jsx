@@ -13,14 +13,16 @@ const BreedCard = ({ name, image, weight, temperaments }) => {
           {weight} kg
         </p>
         <div className={s.tempContainer}>
-          {temperaments.map((t, i) => {
-            if (i > 4) return false;
-            return (
-              <p key={i} className={s.temp}>
-                {t.name}
-              </p>
-            );
-          })}
+          {temperaments
+            ? temperaments.map((t, i) => {
+                if (i > 4) return false;
+                return (
+                  <p key={i} className={s.temp}>
+                    {t.name}
+                  </p>
+                );
+              })
+            : null}
         </div>
       </div>
     </div>

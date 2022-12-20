@@ -12,15 +12,16 @@ const Breeds = ({ loading, breeds, getBreeds, firstElement, lastElement }) => {
 
   return (
     <div>
-      {loading ? <Loading /> : null}
       <Navbar />
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className={s.container}>
+          <PageController />
+          
 
-      <div className={s.container}>
-        {!loading ? <PageController /> : null}
-
-        <div className={s.cardsContainer}>
-          {breeds &&
-            [...breeds].slice(firstElement, lastElement).map((b, i) => {
+          <div className={s.cardsContainer}>
+            {[...breeds].slice(firstElement, lastElement).map((b, i) => {
               return (
                 <BreedCard
                   key={i}
@@ -31,10 +32,11 @@ const Breeds = ({ loading, breeds, getBreeds, firstElement, lastElement }) => {
                 />
               );
             })}
-        </div>
+          </div>
 
-        {!loading ? <PageController /> : null}
-      </div>
+          <PageController />
+        </div>
+      )}
     </div>
   );
 };
