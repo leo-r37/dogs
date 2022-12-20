@@ -1,23 +1,31 @@
-import axios from 'axios';
+import axios from "axios";
 
 export const loadingOn = () => {
-    return {
-        type: 'LOADING_ON'
-    }
+  return {
+    type: "LOADING_ON",
+  };
 };
 
 export const getTemperaments = () => {
-    return async (dispatch) => {
-        dispatch(loadingOn());
-        let temperaments = await axios.get('http://localhost:3001/temperaments');
-        return dispatch({type: 'GET_TEMPERAMENTS', payload: temperaments})
-    }
-}
+  return async (dispatch) => {
+    dispatch(loadingOn());
+    let temperaments = await axios.get("http://localhost:3001/temperaments");
+    return dispatch({ type: "GET_TEMPERAMENTS", payload: temperaments });
+  };
+};
 
 export const getBreeds = () => {
-    return async (dispatch) => {
-        dispatch(loadingOn());
-        let dogs = await axios.get('http://localhost:3001/dogs');
-        return dispatch({type: 'GET_BREEDS', payload: dogs.data})
-    }
-}
+  return async (dispatch) => {
+    dispatch(loadingOn());
+    let dogs = await axios.get("http://localhost:3001/dogs");
+    return dispatch({ type: "GET_BREEDS", payload: dogs.data });
+  };
+};
+
+export const nextPage = () => {
+  return { type: "NEXT_PAGE" };
+};
+
+export const prevPage = () => {
+  return { type: "PREV_PAGE" };
+};

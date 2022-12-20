@@ -9,10 +9,10 @@ const getDogsById = async (req, res) => {
         attributes: { exclude: ["id"] },
         include: {
           model: Temperament,
-          attributes: ['name'],
+          attributes: ["name"],
           through: {
-            attributes: []
-          }
+            attributes: [],
+          },
         },
       });
       dog ? res.send(dog) : res.status(404).send("Dog breed not found");
@@ -27,10 +27,36 @@ const getDogsById = async (req, res) => {
       let height = dog[0].height.metric;
       let weight = dog[0].weight.metric;
       let image = dog[0].image.url;
-      dog = { name, height, weight, life_span, image, temperament };
-      dog !== undefined
-        ? res.send(dog)
-        : res.status(404).send("Dog breed not found");
+
+      if (temperament) {
+        let temperamentsToArray = temperament.split(", ");
+        temperamentsToArray = temperamentsToArray.map((t) => {
+          return { name: t };
+        });
+        dog = {
+          name,
+          height,
+          weight,
+          life_span,
+          image,
+          temperaments: temperamentsToArray,
+        };
+        dog !== undefined
+          ? res.send(dog)
+          : res.status(404).send("Dog breed not found");
+      } else {
+        dog = {
+          name,
+          height,
+          weight,
+          life_span,
+          image,
+          temperaments: temperament,
+        };
+        dog !== undefined
+          ? res.send(dog)
+          : res.status(404).send("Dog breed not found");
+      }
     } catch (e) {
       res.status(400).json({ error: e.message });
     }

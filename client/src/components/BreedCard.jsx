@@ -7,14 +7,19 @@ const BreedCard = ({ name, image, weight, temperaments }) => {
         <img src={image} className={s.image} alt="dog" />
       </div>
       <div className={s.infoContainer}>
-        <h2>{name}</h2>
+        <h2 className={name.length >= 22 ? s.h2 : null}>{name}</h2>
         <p>
           <b>Weight: </b>
           {weight} kg
         </p>
         <div className={s.tempContainer}>
-          {temperaments.map((t) => {
-            return <p className={s.temp}>{t}</p>;
+          {temperaments.map((t, i) => {
+            if (i > 4) return false;
+            return (
+              <p key={i} className={s.temp}>
+                {t.name}
+              </p>
+            );
           })}
         </div>
       </div>

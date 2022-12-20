@@ -1,5 +1,5 @@
 .container {
-  margin: 50px;
+  
   background-color: #fff;
   border: 1px solid rgb(189, 189, 189);
   border-radius: 5px;
@@ -30,6 +30,12 @@
     border-bottom-right-radius: 5px;
 }
 
+
+
+.h2 {
+  font-size: 17px;
+}
+
 .tempContainer {
     display: flex;
     justify-content: space-evenly;
@@ -37,6 +43,7 @@
 }
 
 .temp {
+  font-size: 15px;
     margin-top: 10px;
     background-color: #ff7f00;
     color: #fff;

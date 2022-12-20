@@ -16,22 +16,36 @@ const getDogs = async (req, res) => {
         },
         include: {
           model: Temperament,
-          attributes: ['name'],
+          attributes: ["name"],
           through: {
-            attributes: []
-          }
+            attributes: [],
+          },
         },
       });
       const axiosDogs = await axios.get("https://api.thedogapi.com/v1/breeds");
       axiosDogs.data.forEach((d) => {
         if (d.name.includes(name)) {
-          let dog = {
-            image: d.image.url,
-            name: d.name,
-            weight: d.weight.metric,
-            temperament: d.temperament,
-          };
-          dogsToSend.push(dog);
+          if (d.temperament) {
+            let temperamentsToArray = d.temperament.split(", ");
+            temperamentsToArray = temperamentsToArray.map((t) => {
+              return { name: t };
+            });
+            let dog = {
+              image: d.image.url,
+              name: d.name,
+              weight: d.weight.metric,
+              temperaments: temperamentsToArray,
+            };
+            dogsToSend.push(dog);
+          } else {
+            let dog = {
+              image: d.image.url,
+              name: d.name,
+              weight: d.weight.metric,
+              temperaments: d.temperament,
+            };
+            dogsToSend.push(dog);
+          }
         }
       });
       dogsToSend = dbDogs.concat(dogsToSend);
@@ -48,22 +62,36 @@ const getDogs = async (req, res) => {
         attributes: ["image", "name", "weight"],
         include: {
           model: Temperament,
-          attributes: ['name'],
+          attributes: ["name"],
           through: {
-            attributes: []
-          }
+            attributes: [],
+          },
         },
       });
       const axiosDogs = await axios.get("https://api.thedogapi.com/v1/breeds");
 
       axiosDogs.data.forEach((d) => {
-        let dog = {
-          image: d.image.url,
-          name: d.name,
-          weight: d.weight.metric,
-          temperament: d.temperament,
-        };
-        dogsToSend.push(dog);
+        if (d.temperament) {
+          let temperamentsToArray = d.temperament.split(", ");
+          temperamentsToArray = temperamentsToArray.map((t) => {
+            return { name: t };
+          });
+          let dog = {
+            image: d.image.url,
+            name: d.name,
+            weight: d.weight.metric,
+            temperaments: temperamentsToArray,
+          };
+          dogsToSend.push(dog);
+        } else {
+          let dog = {
+            image: d.image.url,
+            name: d.name,
+            weight: d.weight.metric,
+            temperaments: d.temperament,
+          };
+          dogsToSend.push(dog);
+        }
       });
 
       dogsToSend = dbDogs.concat(dogsToSend);
@@ -71,6 +99,7 @@ const getDogs = async (req, res) => {
         ? res.send(dogsToSend)
         : res.status(404).send("No breeds with that name found");
     } catch (e) {
+      console.log(e);
       res.status(400).json({ error: e.message });
     }
   }

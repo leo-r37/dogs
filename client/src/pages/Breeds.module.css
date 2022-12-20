@@ -1,5 +1,22 @@
-.button {
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    align-items: center;
+    justify-content: center;
     box-sizing: border-box;
-    margin: 5px;
-    padding: 10px;
+}
+
+.pageController {
+    display: flex;
+    gap: 5px;
+}
+
+.cardsContainer {
+    
+    margin: 20px 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 25px;
+    row-gap: 25px;
 }
