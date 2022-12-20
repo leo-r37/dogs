@@ -5,19 +5,22 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    background-color: #fff;
-    border: 2px solid rgb(58, 58, 58);
+    /* background-color: #fff;
+    border: 2px solid rgb(58, 58, 58); */
     border-radius: 5px;
     padding: 3px 5px;
     box-sizing: border-box;
+    cursor: default;
 }
 
 button {
+    border-radius: 3px;
     background-color: #000;
     padding: 5px;
     line-height: 0;
     font-size: 15px;
     color: #fff;
+    cursor: pointer;
 }
 
 button:hover {
@@ -35,4 +38,10 @@ input {
     text-align: center;
     border: 2px solid black;
     border-radius: 5px;
+}
+
+input:focus {
+    outline: #ff7f00;
+    border: 2px solid #ff7f00;
+
 }
