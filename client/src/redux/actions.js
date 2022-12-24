@@ -23,8 +23,8 @@ export const getBreeds = () => {
 };
 
 export const firstPage = () => {
-  return {type: 'FIRST_PAGE'}
-}
+  return { type: "FIRST_PAGE" };
+};
 
 export const prevPage = () => {
   return { type: "PREV_PAGE" };
@@ -35,11 +35,11 @@ export const nextPage = () => {
 };
 
 export const lastPage = () => {
-  return {type: 'LAST_PAGE'}
+  return { type: "LAST_PAGE" };
 };
 
 export const setPage = (page) => {
-  return {type: 'SET_PAGE', payload: page}
+  return { type: "SET_PAGE", payload: page };
 };
 
 export const getBreedsByName = (name) => {
@@ -49,3 +49,20 @@ export const getBreedsByName = (name) => {
     return dispatch({ type: "GET_BREEDS_BY_NAME", payload: dogs.data });
   };
 };
+
+export const clearSearch = () => {
+  return { type: "CLEAR_SEARCH" };
+};
+
+export const getData = () => {
+  return async (dispatch) => {
+    dispatch(loadingOn());
+    let dogs = await axios.get("http://localhost:3001/dogs");
+    let temperaments = await axios.get("http://localhost:3001/temperaments");
+    return dispatch({ type: "GET_DATA", breeds: dogs.data, temperaments: temperaments.data });
+  };
+};
+
+export const setFilters = (filters) => {
+  return {type: 'SET_FILTERS', payload: filters}
+}

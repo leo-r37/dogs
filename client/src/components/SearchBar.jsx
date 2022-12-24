@@ -1,9 +1,9 @@
 import { useState } from "react";
 import s from "./SearchBar.module.css";
 import { connect } from "react-redux";
-import { getBreedsByName } from "../redux/actions";
+import { getBreedsByName, firstPage } from "../redux/actions";
 
-const SearchBar = ({ getBreedsByName }) => {
+const SearchBar = ({ getBreedsByName, firstPage }) => {
   const [input, setInput] = useState("");
 
   const handleChange = (e) => {
@@ -12,6 +12,7 @@ const SearchBar = ({ getBreedsByName }) => {
 
   const handleSearchButton = () => {
     getBreedsByName(input);
+    firstPage();
   };
 
   const inputKey = (e) => {
@@ -39,6 +40,7 @@ const SearchBar = ({ getBreedsByName }) => {
 
 const mapDispatchToProps = (dispatch) => ({
   getBreedsByName: (name) => dispatch(getBreedsByName(name)),
+  firstPage: () => dispatch(firstPage()),
 });
 
 export default connect(null, mapDispatchToProps)(SearchBar);

@@ -1,11 +1,11 @@
 import { connect } from "react-redux";
-import { getBreeds } from "../redux/actions";
+import { getBreeds, getData } from "../redux/actions";
 import s from "./Landing.module.css";
 
 import img from "../imgs/dogPaw-logo.png";
 import PrimaryButton from "../components/PrimaryButton";
 
-const Landing = ({getBreeds}) => {
+const Landing = ({ getBreeds, getData }) => {
   return (
     <div className={s.container}>
       <div className={`${s.div} ${s.mainDiv}`}>
@@ -13,7 +13,7 @@ const Landing = ({getBreeds}) => {
         <h1 className={s.title}>DogPaw</h1>
         <h2>Dog's breeds database</h2>
         <p>Find the info about all dog's breeds, and create your owns!</p>
-        <PrimaryButton to="/breeds" text="START" onClick={getBreeds} />
+        <PrimaryButton to="/breeds" text="START" onClick={getData} />
       </div>
       <div className={s.div}></div>
     </div>
@@ -22,7 +22,7 @@ const Landing = ({getBreeds}) => {
 
 const mapDispatchToProps = (dispatch) => ({
   getBreeds: () => dispatch(getBreeds()),
+  getData: () => dispatch(getData()),
 });
 
-// export default Landing;
 export default connect(null, mapDispatchToProps)(Landing);

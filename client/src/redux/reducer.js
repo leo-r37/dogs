@@ -1,8 +1,10 @@
 const initialState = {
   loading: false,
   breeds: [],
+  items: [],
   breedsByName: [],
   temperaments: [],
+  filters: [],
   currentPage: 1,
   itemsPerPage: 8,
   firstElement: 0,
@@ -15,6 +17,13 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
+      };
+    case "GET_DATA":
+      return {
+        ...state,
+        loading: false,
+        breeds: action.breeds,
+        temperaments: action.temperaments,
       };
     case "GET_BREEDS":
       return {
@@ -74,6 +83,16 @@ const reducer = (state = initialState, action) => {
         loading: false,
         breedsByName: action.payload,
       };
+    case "CLEAR_SEARCH":
+      return {
+        ...state,
+        breedsByName: [],
+      };
+      case 'SET_FILTERS':
+        return {
+          ...state,
+          filters: action.payload
+        }
     default:
       return { ...state };
   }

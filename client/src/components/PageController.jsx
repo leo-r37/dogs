@@ -86,10 +86,10 @@ const PageController = ({
 
   return (
     <div className={s.pageController}>
-      <button className={s.smallButtons} onClick={firstPageHandler}>
+      <button className={`${s.button} ${s.smallButtons}`} onClick={firstPageHandler}>
         <i className="fi fi-ss-rewind"></i>
       </button>
-      <button onClick={prevPageHandler}>
+      <button onClick={prevPageHandler} className={s.button}>
         <i className="fi fi-sr-caret-left"></i>
       </button>
 
@@ -101,10 +101,10 @@ const PageController = ({
       />
       <p>de {numOfLastPage}</p>
 
-      <button onClick={nextPageHandler}>
+      <button onClick={nextPageHandler} className={s.button}>
         <i className="fi fi-sr-caret-right"></i>
       </button>
-      <button className={s.smallButtons} onClick={lastPageHandler}>
+      <button className={`${s.button} ${s.smallButtons}`} onClick={lastPageHandler}>
         <i className="fi fi-ss-forward"></i>
       </button>
     </div>

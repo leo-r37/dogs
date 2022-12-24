@@ -11,7 +11,7 @@ const getDogs = async (req, res) => {
         attributes: ["image", "name", "weight"],
         where: {
           name: {
-            [Op.like]: `%${name}%`,
+            [Op.iLike]: `%${name}%`,
           },
         },
         include: {
@@ -24,7 +24,7 @@ const getDogs = async (req, res) => {
       });
       const axiosDogs = await axios.get("https://api.thedogapi.com/v1/breeds");
       axiosDogs.data.forEach((d) => {
-        if (d.name.includes(name)) {
+        if (d.name.toLowerCase().includes(name.toLowerCase())) {
           if (d.temperament) {
             let temperamentsToArray = d.temperament.split(", ");
             temperamentsToArray = temperamentsToArray.map((t) => {

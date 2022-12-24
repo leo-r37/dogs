@@ -7,7 +7,7 @@
 .div {
     width: 50vw;
     box-sizing: border-box;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     display: flex;
     align-items: center;
     padding: 20px

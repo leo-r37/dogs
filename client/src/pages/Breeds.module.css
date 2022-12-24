@@ -1,37 +1,61 @@
 .topBar {
-    /* border: 1px solid red; */
-    height: 70px;
-    display: flex;
+  /* border: 1px solid red; */
+  height: 70px;
+  display: flex;
 }
 
 .topBarDivs {
-    border: 1px solid black;
-    height: 100%;
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  /* border: 1px solid black; */
+  height: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.clearSearchDiv {
+  margin: 20px;
+  width: 100px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.clearSearchButton {
+  padding: 3px 6px;
+  box-sizing: border-box;
+  border-radius: 3px;
+  border: 2px solid black;
+  background-color: #000;
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.clearSearchButton:hover {
+  background-color: #ff7f00;
 }
 
 .main {
-    display: flex;
-    flex-direction: column;
-    padding: 30px;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  /* padding: 30px; */
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
 }
 
 .pageController {
-    display: flex;
-    gap: 5px;
+  display: flex;
+  gap: 5px;
 }
 
 .cardsContainer {
-    
-    margin: 20px 10px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    column-gap: 25px;
-    row-gap: 25px;
+  margin: 20px 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 25px;
+  row-gap: 25px;
 }
