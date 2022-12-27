@@ -1,16 +1,19 @@
 import { connect } from "react-redux";
 import s from "./Breeds.module.css";
-import { getData, clearSearch } from "../redux/actions";
+import { getData, clearSearch, firstPage, clearFilters } from "../redux/actions";
 
 import Loading from "../components/Loading.jsx";
 import Navbar from "../components/Navbar.jsx";
 import BreedCard from "../components/BreedCard";
 import PageController from "../components/PageController";
 import SearchBar from "../components/SearchBar";
-import DropdownList from "../components/DropdownList";
+import TemperamentsFilter from "../components/TemperamentsFilter";
+import BreedOriginFilter from "../components/BreedOriginFilter";
+import OrderByFilter from "../components/OrderByFilter";
 
 const Breeds = ({
   loading,
+  items,
   breeds,
   breedsByName,
   temperaments,
@@ -19,8 +22,16 @@ const Breeds = ({
   firstElement,
   lastElement,
   clearSearch,
+  firstPage,
+  clearFilters
 }) => {
   if (breeds.length <= 0) getData();
+
+  const handleClearFilters = () => {
+    clearSearch();
+    firstPage();
+    clearFilters();
+  }
 
   return (
     <div>
@@ -31,19 +42,19 @@ const Breeds = ({
         <div className={s.container}>
           <div className={s.topBar}>
             <div className={s.topBarDivs}>
-              {temperaments.length > 0 ? (
-                <DropdownList name="Temperaments" elements={temperaments} />
-              ) : (
-                <DropdownList />
-              )}
+              <div className={s.filters}>
+                <TemperamentsFilter elements={temperaments} />
+                <BreedOriginFilter />
+                <OrderByFilter />
+              </div>
             </div>
             <div className={s.topBarDivs}>
               <SearchBar />
               <div className={s.clearSearchDiv}>
-                {breedsByName.length > 0 ? (
-                  <div className={s.clearSearchButton} onClick={clearSearch}>
+                {breeds.length !== items.length ? (
+                  <div className={s.clearSearchButton} onClick={handleClearFilters}>
                     <p>CLEAR</p>
-                    <p>SEARCH</p>
+                    <p>FILTERS</p>
                   </div>
                 ) : null}
               </div>
@@ -53,31 +64,18 @@ const Breeds = ({
           <div className={s.main}>
             <PageController />
             <div className={s.cardsContainer}>
-              {breedsByName.length > 0
-                ? [...breedsByName]
-                    .slice(firstElement, lastElement)
-                    .map((b, i) => {
-                      return (
-                        <BreedCard
-                          key={i}
-                          name={b.name}
-                          weight={b.weight}
-                          image={b.image}
-                          temperaments={b.temperaments}
-                        />
-                      );
-                    })
-                : [...breeds].slice(firstElement, lastElement).map((b, i) => {
-                    return (
-                      <BreedCard
-                        key={i}
-                        name={b.name}
-                        weight={b.weight}
-                        image={b.image}
-                        temperaments={b.temperaments}
-                      />
-                    );
-                  })}
+              {[...items].slice(firstElement, lastElement).map((b, i) => {
+                return (
+                  <BreedCard
+                    key={i}
+                    name={b.name}
+                    weightMin={b.weightMin}
+                    weightMax={b.weightMax}
+                    image={b.image}
+                    temperaments={b.temperaments}
+                  />
+                );
+              })}
             </div>
             <PageController />
           </div>
@@ -89,6 +87,7 @@ const Breeds = ({
 
 const mapStateToProps = (state) => ({
   loading: state.loading,
+  items: state.items,
   breeds: state.breeds,
   temperaments: state.temperaments,
   filters: state.filters,
@@ -100,6 +99,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   getData: () => dispatch(getData()),
   clearSearch: () => dispatch(clearSearch()),
+  firstPage: () => dispatch(firstPage()),
+  clearFilters: () => dispatch(clearFilters()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Breeds);

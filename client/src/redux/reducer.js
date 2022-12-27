@@ -2,9 +2,9 @@ const initialState = {
   loading: false,
   breeds: [],
   items: [],
-  breedsByName: [],
+  // breedsByName: [],
   temperaments: [],
-  filters: [],
+  filters: {},
   currentPage: 1,
   itemsPerPage: 8,
   firstElement: 0,
@@ -23,6 +23,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         loading: false,
         breeds: action.breeds,
+        items: action.breeds,
         temperaments: action.temperaments,
       };
     case "GET_BREEDS":
@@ -30,6 +31,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         loading: false,
         breeds: action.payload,
+        items: action.payload,
       };
     case "GET_TEMPERAMENTS":
       return {
@@ -81,18 +83,28 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        breedsByName: action.payload,
+        items: action.payload,
       };
     case "CLEAR_SEARCH":
       return {
         ...state,
-        breedsByName: [],
+        items: state.breeds,
       };
-      case 'SET_FILTERS':
-        return {
-          ...state,
-          filters: action.payload
-        }
+    case "SET_FILTERS":
+      return {
+        ...state,
+        filters: { ...state.filters, [action.value]: action.state },
+      };
+    case "CLEAR_FILTERS":
+      return {
+        ...state,
+        filters: [],
+      };
+    case "SET_ITEMS":
+      return {
+        ...state,
+        items: [...action.payload],
+      };
     default:
       return { ...state };
   }

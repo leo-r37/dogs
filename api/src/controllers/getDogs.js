@@ -8,7 +8,7 @@ const getDogs = async (req, res) => {
     try {
       let dogsToSend = [];
       let dbDogs = await Dog.findAll({
-        attributes: ["image", "name", "weight"],
+        attributes: ["id", "image", "name", "weightMin", "weightMax"],
         where: {
           name: {
             [Op.iLike]: `%${name}%`,
@@ -24,6 +24,9 @@ const getDogs = async (req, res) => {
       });
       const axiosDogs = await axios.get("https://api.thedogapi.com/v1/breeds");
       axiosDogs.data.forEach((d) => {
+        let weightMin = d.weight.metric.split(" - ")[0];
+        let weightMax = d.weight.metric.split(" - ")[1];
+
         if (d.name.toLowerCase().includes(name.toLowerCase())) {
           if (d.temperament) {
             let temperamentsToArray = d.temperament.split(", ");
@@ -33,7 +36,8 @@ const getDogs = async (req, res) => {
             let dog = {
               image: d.image.url,
               name: d.name,
-              weight: d.weight.metric,
+              weightMin,
+              weightMax,
               temperaments: temperamentsToArray,
             };
             dogsToSend.push(dog);
@@ -41,7 +45,8 @@ const getDogs = async (req, res) => {
             let dog = {
               image: d.image.url,
               name: d.name,
-              weight: d.weight.metric,
+              weightMin,
+              weightMax,
               temperaments: d.temperament,
             };
             dogsToSend.push(dog);
@@ -59,7 +64,7 @@ const getDogs = async (req, res) => {
     try {
       let dogsToSend = [];
       const dbDogs = await Dog.findAll({
-        attributes: ["image", "name", "weight"],
+        attributes: ["id", "image", "name", "weightMin", "weightMax"],
         include: {
           model: Temperament,
           attributes: ["name"],
@@ -71,15 +76,20 @@ const getDogs = async (req, res) => {
       const axiosDogs = await axios.get("https://api.thedogapi.com/v1/breeds");
 
       axiosDogs.data.forEach((d) => {
+        let weightMin = d.weight.metric.split(" - ")[0];
+        let weightMax = d.weight.metric.split(" - ")[1];
+
         if (d.temperament) {
           let temperamentsToArray = d.temperament.split(", ");
           temperamentsToArray = temperamentsToArray.map((t) => {
             return { name: t };
           });
           let dog = {
+            id: d.id,
             image: d.image.url,
             name: d.name,
-            weight: d.weight.metric,
+            weightMin,
+            weightMax,
             temperaments: temperamentsToArray,
           };
           dogsToSend.push(dog);
@@ -87,7 +97,8 @@ const getDogs = async (req, res) => {
           let dog = {
             image: d.image.url,
             name: d.name,
-            weight: d.weight.metric,
+            weightMin,
+            weightMax,
             temperaments: d.temperament,
           };
           dogsToSend.push(dog);

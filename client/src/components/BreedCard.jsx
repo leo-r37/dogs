@@ -1,6 +1,6 @@
 import s from "./BreedCard.module.css";
 
-const BreedCard = ({ name, image, weight, temperaments }) => {
+const BreedCard = ({ name, image, weightMin, weightMax, temperaments }) => {
   return (
     <div className={s.container}>
       <div className={s.imageContainer}>
@@ -10,7 +10,7 @@ const BreedCard = ({ name, image, weight, temperaments }) => {
         <h2 className={name.length >= 22 ? s.h2 : null}>{name}</h2>
         <p>
           <b>Weight: </b>
-          {weight} kg
+          {`${weightMin} - ${weightMax}`} kg
         </p>
         <div className={s.tempContainer}>
           {temperaments

@@ -2,11 +2,11 @@ const { Dog, Temperament, DogTemperaments } = require("../db");
 const generateNewId = require("../controllers/generateNewId");
 
 const createDog = async (req, res) => {
-  let { id, name, height, weight, life_span, image, temperaments } = req.body;
-  if (!name || !height || !weight)
+  let { id, name, height, weightMin, weightMax, life_span, image, temperaments } = req.body;
+  if (!name || !height || !weightMin, !weightMax)
     return res.status(400).json({ error: "Missing required fields" });
   if (!id) id = await generateNewId();
-  let dog = { id, name, height, weight, life_span, image };
+  let dog = { id, name, height, weightMin, weightMax, life_span, image };
   try {
     await Dog.create(dog);
     if (temperaments) {

@@ -1,0 +1,97 @@
+/* .container {
+    margin: 40px;
+} */
+
+.titleContainer {
+    border: 1px solid gray;
+    border-radius: 4px;
+    background-color: #fff;
+    width: 150px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.titleContainer:hover {
+    background-color: rgb(224, 224, 224);
+    transition: 0s;
+}
+
+.textDiv {
+    height: 100%;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icoDiv {
+    height: 100%;
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 0;
+    font-size: 20px;
+}
+
+.elementsContainer {
+    background-color: #fff;
+    border: 1px solid gray;
+    border-radius: 4px;
+    width: 150px;
+    max-height: 300px;
+    display: none;
+    position: absolute;
+    transition: 0.5s;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.applyButtonDiv {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.applyButtonDiv button {
+    margin-top: 3px;
+}
+
+.element {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 25px;
+}
+
+.element:hover {
+    background-color: rgb(224, 224, 224);
+    transition: 0s;
+}
+
+.tempCheckDiv {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tempTextDiv {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.tempTextDiv label {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}

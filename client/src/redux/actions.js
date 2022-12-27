@@ -59,10 +59,22 @@ export const getData = () => {
     dispatch(loadingOn());
     let dogs = await axios.get("http://localhost:3001/dogs");
     let temperaments = await axios.get("http://localhost:3001/temperaments");
-    return dispatch({ type: "GET_DATA", breeds: dogs.data, temperaments: temperaments.data });
+    return dispatch({
+      type: "GET_DATA",
+      breeds: dogs.data,
+      temperaments: temperaments.data,
+    });
   };
 };
 
-export const setFilters = (filters) => {
-  return {type: 'SET_FILTERS', payload: filters}
+export const setFilters = (value, state) => {
+  return {type: 'SET_FILTERS', value, state}
+};
+
+export const clearFilters = () => {
+  return {type: 'CLEAR_FILTERS'}
+};
+
+export const setItems = (payload) => {
+  return {type: 'SET_ITEMS', payload}
 }

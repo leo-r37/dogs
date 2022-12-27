@@ -73,5 +73,6 @@
 }
 
 .buttonDiv:hover {
-    background-color: rgb(248, 242, 235);
+    background-color: #ff7f00;
+    color: antiquewhite;
 }

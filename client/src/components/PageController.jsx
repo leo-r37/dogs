@@ -10,6 +10,7 @@ import {
 import { useEffect, useState } from "react";
 
 const PageController = ({
+  items,
   breeds,
   breedsByName,
   currentPage,
@@ -27,8 +28,8 @@ const PageController = ({
   }, [currentPage]);
 
   let numOfLastPage;
-  if (breedsByName.length > 0) {
-    numOfLastPage = Math.ceil(breedsByName.length / itemsPerPage);
+  if (breeds.length !== items.length) {
+    numOfLastPage = Math.ceil(items.length / itemsPerPage);
   } else {
     numOfLastPage = Math.ceil(breeds.length / itemsPerPage);
   }
@@ -51,8 +52,8 @@ const PageController = ({
   };
 
   const lastPageHandler = () => {
-    if (breedsByName.length > 0) {
-      let numOfPage = Math.ceil(breedsByName.length / itemsPerPage);
+    if (items.length > 0) {
+      let numOfPage = Math.ceil(items.length / itemsPerPage);
       setPage(numOfPage);
       setInputPage(numOfLastPage);
     } else {
@@ -112,6 +113,7 @@ const PageController = ({
 };
 
 const mapStateToProps = (state) => ({
+  items: state.items,
   breeds: state.breeds,
   currentPage: state.currentPage,
   itemsPerPage: state.itemsPerPage,
