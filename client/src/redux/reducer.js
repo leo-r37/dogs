@@ -2,6 +2,7 @@ const initialState = {
   loading: false,
   breeds: [],
   items: [],
+  currentDog: {},
   temperaments: [],
   filters: [],
   currentPage: 1,
@@ -84,6 +85,17 @@ const reducer = (state = initialState, action) => {
         loading: false,
         items: action.payload,
       };
+    case "GET_DOG_BY_ID":
+      return {
+        ...state,
+        loading: false,
+        currentDog: action.payload,
+      };
+    case "CLEAR_CURRENT_DOG":
+      return {
+        ...state,
+        currentDog: {},
+      };
     case "CLEAR_SEARCH":
       return {
         ...state,
@@ -92,12 +104,12 @@ const reducer = (state = initialState, action) => {
     case "SET_FILTERS":
       return {
         ...state,
-        filters: [...state.filters, action.payload]
+        filters: [...state.filters, action.payload],
       };
     case "DELETE_FILTER":
       return {
         ...state,
-        filters: state.filters.filter(f => f !== action.payload)
+        filters: state.filters.filter((f) => f !== action.payload),
       };
     case "CLEAR_FILTERS":
       return {

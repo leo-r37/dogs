@@ -25,17 +25,17 @@ const BreedOriginFilter = ({ breeds, setItems, firstPage }) => {
         firstPage();
         toggleVisibility();
         break;
-      case "API":
+      case "Existent":
         let apiItems = breeds.filter((b) => typeof b.id === "number");
         setItems(apiItems);
-        setName("API");
+        setName("Existent");
         firstPage();
         toggleVisibility();
         break;
-      case "Database":
+      case "Incorporated":
         let dbItems = breeds.filter((b) => typeof b.id === "string");
         setItems(dbItems);
-        setName("Database");
+        setName("Incorporated");
         firstPage();
         toggleVisibility();
         break;
@@ -44,7 +44,7 @@ const BreedOriginFilter = ({ breeds, setItems, firstPage }) => {
     }
   };
 
-  const options = ['All', 'API', 'Database'];
+  const options = ['All', 'Existent', 'Incorporated'];
 
   return (
     <div className={s.container}>

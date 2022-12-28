@@ -6,7 +6,6 @@ const getDogsById = async (req, res) => {
   if (idRaza.includes("db")) {
     try {
       const dog = await Dog.findByPk(idRaza, {
-        attributes: { exclude: ["id"] },
         include: {
           model: Temperament,
           attributes: ["name"],
@@ -23,7 +22,7 @@ const getDogsById = async (req, res) => {
     try {
       const dogs = await axios.get(`https://api.thedogapi.com/v1/breeds`);
       let dog = dogs.data.filter((d) => d.id == idRaza);
-      let { name, life_span, temperament } = dog[0];
+      let { id, name, life_span, temperament } = dog[0];
       let height = dog[0].height.metric;
       let weight = dog[0].weight.metric;
       let image = dog[0].image.url;
@@ -34,6 +33,7 @@ const getDogsById = async (req, res) => {
           return { name: t };
         });
         dog = {
+          id,
           name,
           height,
           weight,
@@ -46,6 +46,7 @@ const getDogsById = async (req, res) => {
           : res.status(404).send("Dog breed not found");
       } else {
         dog = {
+          id,
           name,
           height,
           weight,

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import s from "./Breeds.module.css";
 import {
@@ -20,9 +21,7 @@ const Breeds = ({
   loading,
   items,
   breeds,
-  breedsByName,
   temperaments,
-  filters,
   getData,
   firstElement,
   lastElement,
@@ -49,24 +48,23 @@ const Breeds = ({
             <div className={s.topBarDivs}>
               <div className={s.filters}>
                 <TemperamentsFilter elements={temperaments} />
-                <button onClick={() => console.log(filters)}>filtros</button>
                 <BreedOriginFilter />
                 <OrderByFilter />
               </div>
             </div>
+            <div className={s.clearSearchDiv}>
+              {breeds.length !== items.length ? (
+                <div
+                  className={s.clearSearchButton}
+                  onClick={handleClearFilters}
+                >
+                  <p>CLEAR</p>
+                  <p>FILTERS</p>
+                </div>
+              ) : null}
+            </div>
             <div className={s.topBarDivs}>
               <SearchBar />
-              <div className={s.clearSearchDiv}>
-                {breeds.length !== items.length ? (
-                  <div
-                    className={s.clearSearchButton}
-                    onClick={handleClearFilters}
-                  >
-                    <p>CLEAR</p>
-                    <p>FILTERS</p>
-                  </div>
-                ) : null}
-              </div>
             </div>
           </div>
 
@@ -75,14 +73,15 @@ const Breeds = ({
             <div className={s.cardsContainer}>
               {[...items].slice(firstElement, lastElement).map((b, i) => {
                 return (
-                  <BreedCard
-                    key={i}
-                    name={b.name}
-                    weightMin={b.weightMin}
-                    weightMax={b.weightMax}
-                    image={b.image}
-                    temperaments={b.temperaments}
-                  />
+                  <Link key={i} to={`/breeds/${b.id}`} className={s.link}>
+                    <BreedCard
+                      name={b.name}
+                      weightMin={b.weightMin}
+                      weightMax={b.weightMax}
+                      image={b.image}
+                      temperaments={b.temperaments}
+                    />
+                  </Link>
                 );
               })}
             </div>
@@ -102,7 +101,6 @@ const mapStateToProps = (state) => ({
   filters: state.filters,
   firstElement: state.firstElement,
   lastElement: state.lastElement,
-  breedsByName: state.breedsByName,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -69,3 +69,13 @@
   column-gap: 25px;
   row-gap: 25px;
 }
+
+.link {
+  text-decoration: none;
+  color: initial;
+}
+
+.link:hover {
+  transform: scale(1.02);
+  transition: 0.5s;
+}

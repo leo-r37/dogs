@@ -37,6 +37,7 @@ const TemperamentsFilter = ({
     let state = e.target.checked;
 
     if (state) {
+      toggleVisibility();
       let filteredItems = [];
       breeds.forEach((i) => {
         if (i.temperaments && i.temperaments.some((t) => t.name === value))
@@ -50,6 +51,7 @@ const TemperamentsFilter = ({
           : setItems(filteredItems);
       }
     } else {
+      toggleVisibility();
       deleteFilter(value);
       let filteredItems = [];
       items.forEach((i) => {
@@ -70,8 +72,9 @@ const TemperamentsFilter = ({
     firstPage();
     clearFilters();
     setItems(breeds);
+    toggleVisibility();
   };
-  
+
   return (
     <div className={s.container}>
       {filters.length > 0 ? (
@@ -106,7 +109,7 @@ const TemperamentsFilter = ({
                     name="Temperaments"
                     id={t}
                     value={t}
-                    checked={filters.includes(t) || ''}
+                    checked={filters.includes(t) || ""}
                     onChange={(e) => handleCheckbox(e)}
                   />
                 </div>

@@ -34,6 +34,7 @@ const getDogs = async (req, res) => {
               return { name: t };
             });
             let dog = {
+              id: d.id,
               image: d.image.url,
               name: d.name,
               weightMin,
