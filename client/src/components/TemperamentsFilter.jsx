@@ -3,8 +3,9 @@ import { useState } from "react";
 import s from "./TemperamentsFilter.module.css";
 import {
   setItems,
-  setFilters,
   firstPage,
+  setFilters,
+  deleteFilter,
   clearFilters,
 } from "../redux/actions";
 
@@ -16,6 +17,7 @@ const TemperamentsFilter = ({
   setItems,
   filters,
   setFilters,
+  deleteFilter,
   clearFilters,
 }) => {
   const [display, setDisplay] = useState(false);
@@ -42,13 +44,13 @@ const TemperamentsFilter = ({
       });
       if (filteredItems.length > 0) {
         firstPage();
-        setFilters(value, state);
+        setFilters(value);
         items.length < breeds.length
           ? setItems(items.concat(filteredItems))
           : setItems(filteredItems);
       }
     } else {
-      setFilters(value, state);
+      deleteFilter(value);
       let filteredItems = [];
       items.forEach((i) => {
         if (i.temperaments.every((t) => t.name !== value))
@@ -72,9 +74,9 @@ const TemperamentsFilter = ({
   
   return (
     <div className={s.container}>
-      {Object.keys(filters).length > 0 ? (
+      {filters.length > 0 ? (
         <div className={s.counter}>
-          <p>{Object.keys(filters).length}</p>
+          <p>{filters.length}</p>
         </div>
       ) : null}
       <div className={s.titleContainer} onClick={toggleVisibility}>
@@ -104,7 +106,7 @@ const TemperamentsFilter = ({
                     name="Temperaments"
                     id={t}
                     value={t}
-                    checked={filters[t]}
+                    checked={filters.includes(t) || ''}
                     onChange={(e) => handleCheckbox(e)}
                   />
                 </div>
@@ -130,6 +132,7 @@ const mapDispatchToProps = (dispatch) => ({
   setFilters: (value, state) => dispatch(setFilters(value, state)),
   firstPage: () => dispatch(firstPage()),
   clearFilters: () => dispatch(clearFilters()),
+  deleteFilter: (filter) => dispatch(deleteFilter(filter)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TemperamentsFilter);

@@ -1,6 +1,11 @@
 import { connect } from "react-redux";
 import s from "./Breeds.module.css";
-import { getData, clearSearch, firstPage, clearFilters } from "../redux/actions";
+import {
+  getData,
+  clearSearch,
+  firstPage,
+  clearFilters,
+} from "../redux/actions";
 
 import Loading from "../components/Loading.jsx";
 import Navbar from "../components/Navbar.jsx";
@@ -23,7 +28,7 @@ const Breeds = ({
   lastElement,
   clearSearch,
   firstPage,
-  clearFilters
+  clearFilters,
 }) => {
   if (breeds.length <= 0) getData();
 
@@ -31,7 +36,7 @@ const Breeds = ({
     clearSearch();
     firstPage();
     clearFilters();
-  }
+  };
 
   return (
     <div>
@@ -44,6 +49,7 @@ const Breeds = ({
             <div className={s.topBarDivs}>
               <div className={s.filters}>
                 <TemperamentsFilter elements={temperaments} />
+                <button onClick={() => console.log(filters)}>filtros</button>
                 <BreedOriginFilter />
                 <OrderByFilter />
               </div>
@@ -52,7 +58,10 @@ const Breeds = ({
               <SearchBar />
               <div className={s.clearSearchDiv}>
                 {breeds.length !== items.length ? (
-                  <div className={s.clearSearchButton} onClick={handleClearFilters}>
+                  <div
+                    className={s.clearSearchButton}
+                    onClick={handleClearFilters}
+                  >
                     <p>CLEAR</p>
                     <p>FILTERS</p>
                   </div>

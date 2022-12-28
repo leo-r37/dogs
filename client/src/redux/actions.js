@@ -67,9 +67,13 @@ export const getData = () => {
   };
 };
 
-export const setFilters = (value, state) => {
-  return {type: 'SET_FILTERS', value, state}
+export const setFilters = (payload) => {
+  return {type: 'SET_FILTERS', payload}
 };
+
+export const deleteFilter = (payload) => {
+  return {type: 'DELETE_FILTER', payload}
+}
 
 export const clearFilters = () => {
   return {type: 'CLEAR_FILTERS'}

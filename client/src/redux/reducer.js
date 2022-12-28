@@ -2,9 +2,8 @@ const initialState = {
   loading: false,
   breeds: [],
   items: [],
-  // breedsByName: [],
   temperaments: [],
-  filters: {},
+  filters: [],
   currentPage: 1,
   itemsPerPage: 8,
   firstElement: 0,
@@ -93,7 +92,12 @@ const reducer = (state = initialState, action) => {
     case "SET_FILTERS":
       return {
         ...state,
-        filters: { ...state.filters, [action.value]: action.state },
+        filters: [...state.filters, action.payload]
+      };
+    case "DELETE_FILTER":
+      return {
+        ...state,
+        filters: state.filters.filter(f => f !== action.payload)
       };
     case "CLEAR_FILTERS":
       return {
