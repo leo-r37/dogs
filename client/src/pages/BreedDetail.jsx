@@ -1,14 +1,24 @@
 import s from "./BreedDetail.module.css";
 import { connect } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 
 import Navbar from "../components/Navbar";
 import Loading from "../components/Loading.jsx";
 
-import { getDogById, clearCurrentDog } from "../redux/actions";
+import { getDogById, clearCurrentDog, deleteBreed } from "../redux/actions";
+import { useState } from "react";
 
-const BreedDetail = ({ getDogById, clearCurrentDog, data, loading }) => {
+const BreedDetail = ({
+  getDogById,
+  clearCurrentDog,
+  deleteBreed,
+  data,
+  loading,
+}) => {
   let { id } = useParams();
+  const history = useHistory();
+
+  const [alert, setAlert] = useState(false);
 
   if (Object.keys(data) <= 0) getDogById(id);
   let {
@@ -22,8 +32,53 @@ const BreedDetail = ({ getDogById, clearCurrentDog, data, loading }) => {
     temperaments,
   } = data;
 
+  const handleConfirmation = () => {
+    setAlert(!alert);
+  };
+
+  const handleDelete = () => {
+    deleteBreed(id);
+    history.push("/breeds");
+  };
+
+  const handlePageController = (side) => {
+    let newId = "";
+    if (id.startsWith("db")) {
+      let num = parseInt(id.slice(2));
+      side === "left" ? num-- : num++;
+      newId = `db0${num}`;
+    } else {
+      let num = parseInt(id);
+      side === "left" ? num-- : num++;
+      newId = `${num}`;
+    }
+    getDogById(newId);
+    history.push(`/breeds/${newId}`);
+  };
+
   return (
     <div>
+      {alert ? (
+        <div className={s.confirmDeleteAlertDivContainer}>
+          <div className={s.alertDiv}>
+            <div className={s.alertTitleDiv}>
+              <h3>Confirm delete?</h3>
+            </div>
+            <div className={s.alertButtonsDiv}>
+              <button className={s.button} onClick={handleConfirmation}>
+                <p>Cancel</p>
+              </button>
+              <button
+                className={`${s.button} ${s.buttonDelete}`}
+                onClick={handleDelete}
+              >
+                <i className="fi fi-rr-trash"></i>
+                <p>Delete</p>
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : null}
       <Navbar />{" "}
       <Link to="/breeds" onClick={clearCurrentDog} className={s.link}>
         Home
@@ -33,7 +88,10 @@ const BreedDetail = ({ getDogById, clearCurrentDog, data, loading }) => {
       ) : (
         <div className={s.container}>
           <div className={s.pageControllerDiv}>
-            <div className={s.pageLeft}></div>
+            <div
+              className={s.pageLeft}
+              onClick={() => handlePageController("left")}
+            ></div>
           </div>
 
           <div className={s.main}>
@@ -73,13 +131,24 @@ const BreedDetail = ({ getDogById, clearCurrentDog, data, loading }) => {
               </div>
 
               <div className={s.controllerDiv}>
-                {typeof data.id === "string" ? <button>delete</button> : null}
+                {typeof data.id === "string" ? (
+                  <button
+                    className={`${s.button} ${s.buttonDelete}`}
+                    onClick={handleConfirmation}
+                  >
+                    <i className="fi fi-rr-trash"></i>
+                    <p>Delete</p>
+                  </button>
+                ) : null}
               </div>
             </div>
           </div>
 
           <div className={s.pageControllerDiv}>
-            <div className={s.pageRight}></div>
+            <div
+              className={s.pageRight}
+              onClick={() => handlePageController("right")}
+            ></div>
           </div>
         </div>
       )}
@@ -95,6 +164,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   getDogById: (id) => dispatch(getDogById(id)),
   clearCurrentDog: () => dispatch(clearCurrentDog()),
+  deleteBreed: (id) => dispatch(deleteBreed(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BreedDetail);

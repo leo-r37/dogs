@@ -26,7 +26,7 @@ const createDog = async (req, res) => {
       }
     };
     const newDog = await Dog.findByPk(id);
-    res.status(201).send(`Raza creada con el id ${newDog.id}`);
+    res.status(201).send(`Breed created with id ${newDog.id}`);
   } catch (e) {
     console.log(e);
     res.status(400).json({ error: e.message });

@@ -14,6 +14,44 @@ export const getTemperaments = () => {
   };
 };
 
+export const createBreed = (breed) => {
+  let {
+    name,
+    heightMin,
+    heightMax,
+    weightMin,
+    weightMax,
+    lifeSpan,
+    imageUrl,
+    temperaments,
+  } = breed;
+  let newBreed = {
+    name,
+    heightMin,
+    heightMax,
+    weightMin,
+    weightMax,
+    life_span: lifeSpan,
+    image: imageUrl,
+    temperaments,
+  };
+  return async (dispatch) => {
+    dispatch(loadingOn());
+    await axios.post("http://localhost:3001/dogs", newBreed);
+    let dogs = await axios.get("http://localhost:3001/dogs");
+    return dispatch({ type: "GET_BREEDS", payload: dogs.data });
+  };
+};
+
+export const deleteBreed = (id) => {
+  return async (dispatch) => {
+    dispatch(loadingOn());
+    await axios.delete(`http://localhost:3001/dogs/${id}`);
+    let dogs = await axios.get("http://localhost:3001/dogs");
+    return dispatch({ type: "GET_BREEDS", payload: dogs.data });
+  };
+};
+
 export const getBreeds = () => {
   return async (dispatch) => {
     dispatch(loadingOn());
@@ -80,17 +118,17 @@ export const getData = () => {
 };
 
 export const setFilters = (payload) => {
-  return {type: 'SET_FILTERS', payload}
+  return { type: "SET_FILTERS", payload };
 };
 
 export const deleteFilter = (payload) => {
-  return {type: 'DELETE_FILTER', payload}
-}
+  return { type: "DELETE_FILTER", payload };
+};
 
 export const clearFilters = () => {
-  return {type: 'CLEAR_FILTERS'}
+  return { type: "CLEAR_FILTERS" };
 };
 
 export const setItems = (payload) => {
-  return {type: 'SET_ITEMS', payload}
-}
+  return { type: "SET_ITEMS", payload };
+};

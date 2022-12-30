@@ -324,3 +324,17 @@
   color: rgba(200, 200, 200, 0.5);
   cursor: not-allowed;
 }
+
+.cancelButton {
+  background-color: #a81414;
+}
+
+.cancelButton:hover {
+  background-color: #831010;
+  transition: 0.2s;
+}
+
+.cancelButton:focus {
+  outline-style: solid;
+  outline-color: #a81414;
+}

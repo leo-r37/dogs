@@ -1,14 +1,17 @@
 import s from "./CreateBreed.module.css";
 import { connect } from "react-redux";
 import { useState } from "react";
-import { getTemperaments } from "../redux/actions";
+import { createBreed, getTemperaments } from "../redux/actions";
 
 import picture from "../imgs/dogPicture.png";
 
 import Navbar from "../components/Navbar";
+import { useHistory } from "react-router-dom";
 
-const CreateBreed = ({ temperaments, getTemperaments }) => {
+const CreateBreed = ({ temperaments, getTemperaments, createBreed }) => {
   if (temperaments.length <= 0) getTemperaments();
+
+  const history = useHistory();
 
   let [input, setInput] = useState({
     imageUrl: "",
@@ -217,7 +220,6 @@ const CreateBreed = ({ temperaments, getTemperaments }) => {
       heightMax,
       heightMin,
       lifeSpan,
-      // temperaments,
     } = input;
     if (
       !name ||
@@ -228,7 +230,6 @@ const CreateBreed = ({ temperaments, getTemperaments }) => {
       !lifeSpan
     )
       return true;
-    // else if (temperaments.length <= 0) return true;
     else if (Object.values(error).some((v) => v)) return true;
     else return false;
   };
@@ -236,14 +237,19 @@ const CreateBreed = ({ temperaments, getTemperaments }) => {
   const handleSubmit = () => {
     clearErrors("temperaments");
     clearErrors("imageUrl");
-    if (url !== input.imageUrl) setError({...error, imageUrl: 'Load the URL image'})
+    if (url !== input.imageUrl)
+      setError({ ...error, imageUrl: "Load the URL image" });
     else if (input.temperaments.length <= 0)
       setError({ ...error, temperaments: "Select at least one temperament" });
     else {
-      // 🚫❌❗ ---------------- manejar el submit para enviar los datos aca ---------------- ❗❌🚫
-      console.log(input);
+      createBreed(input);
+      history.push("/breeds");
     }
   };
+
+  const handleCancel = () => {
+    history.goBack();
+  }
 
   return (
     <div>
@@ -426,7 +432,7 @@ const CreateBreed = ({ temperaments, getTemperaments }) => {
         </div>
 
         <div className={s.buttonContainer}>
-          <button className={s.footerButton} onClick={() => console.log(input)}>
+          <button className={`${s.footerButton} ${s.cancelButton}`} onClick={handleCancel}>
             Cancel
           </button>
           <button
@@ -434,7 +440,7 @@ const CreateBreed = ({ temperaments, getTemperaments }) => {
             onClick={() => handleSubmit()}
             disabled={handleDisabled() ? true : false}
           >
-            Success
+            Create
           </button>
         </div>
       </div>
@@ -448,6 +454,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getTemperaments: () => dispatch(getTemperaments()),
+  createBreed: (breed) => dispatch(createBreed(breed)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateBreed);
