@@ -17,8 +17,12 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING(50),
         allowNull: false,
       },
-      height: {
-        type: DataTypes.INTEGER,
+      heightMin: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      heightMax: {
+        type: DataTypes.STRING,
         allowNull: false,
       },
       weightMin: {
@@ -30,7 +34,6 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       life_span: {
-        // type: DataTypes.RANGE(DataTypes.DECIMAL)
         type: DataTypes.STRING,
       },
       image: {

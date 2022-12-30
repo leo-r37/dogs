@@ -10,7 +10,7 @@ export const getTemperaments = () => {
   return async (dispatch) => {
     dispatch(loadingOn());
     let temperaments = await axios.get("http://localhost:3001/temperaments");
-    return dispatch({ type: "GET_TEMPERAMENTS", payload: temperaments });
+    return dispatch({ type: "GET_TEMPERAMENTS", payload: temperaments.data });
   };
 };
 

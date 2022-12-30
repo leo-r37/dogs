@@ -22,9 +22,15 @@ const getDogsById = async (req, res) => {
     try {
       const dogs = await axios.get(`https://api.thedogapi.com/v1/breeds`);
       let dog = dogs.data.filter((d) => d.id == idRaza);
+      if (dog.length <= 0) {
+        res.status(404).json({ error: "Can't find a breed with that ID" });
+        return;
+      }
       let { id, name, life_span, temperament } = dog[0];
-      let height = dog[0].height.metric;
-      let weight = dog[0].weight.metric;
+      let heightMin = dog[0].height.metric.split(" - ")[0];
+      let heightMax = dog[0].height.metric.split(" - ")[1];
+      let weightMin = dog[0].weight.metric.split(" - ")[0];
+      let weightMax = dog[0].weight.metric.split(" - ")[1];
       let image = dog[0].image.url;
 
       if (temperament) {
@@ -35,8 +41,10 @@ const getDogsById = async (req, res) => {
         dog = {
           id,
           name,
-          height,
-          weight,
+          heightMin,
+          heightMax,
+          weightMin,
+          weightMax,
           life_span,
           image,
           temperaments: temperamentsToArray,
@@ -48,8 +56,10 @@ const getDogsById = async (req, res) => {
         dog = {
           id,
           name,
-          height,
-          weight,
+          heightMin,
+          heightMax,
+          weightMin,
+          weightMax,
           life_span,
           image,
           temperaments: temperament,

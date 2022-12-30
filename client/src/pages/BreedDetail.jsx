@@ -11,6 +11,16 @@ const BreedDetail = ({ getDogById, clearCurrentDog, data, loading }) => {
   let { id } = useParams();
 
   if (Object.keys(data) <= 0) getDogById(id);
+  let {
+    name,
+    heightMin,
+    heightMax,
+    weightMin,
+    weightMax,
+    life_span,
+    image,
+    temperaments,
+  } = data;
 
   return (
     <div>
@@ -28,31 +38,31 @@ const BreedDetail = ({ getDogById, clearCurrentDog, data, loading }) => {
 
           <div className={s.main}>
             <div className={s.imgDiv}>
-              <img src={data.image} alt="Dog" />
+              <img src={image} alt="Dog" />
             </div>
 
             <div className={s.dataDiv}>
               <div className={s.infoDiv}>
-                <h2>{data.name}</h2>
+                <h2>{name}</h2>
                 <div className={s.data}>
                   <p>
-                    <span className={s.highlighted}>Height:</span> {data.height}{" "}
-                    cm
+                    <span className={s.highlighted}>Height:</span> {heightMin} -{" "}
+                    {heightMax} cm
                   </p>
                   <p>
-                    <span className={s.highlighted}>Weight:</span> {data.weight}{" "}
-                    Kg
+                    <span className={s.highlighted}>Weight:</span> {weightMin} -{" "}
+                    {weightMax} Kg
                   </p>
                   <p>
                     <span className={s.highlighted}>Life span:</span>{" "}
-                    {data.life_span}
+                    {life_span}
                   </p>
                 </div>
               </div>
 
               <div className={s.temperamentsDiv}>
-                {data.temperaments
-                  ? data.temperaments.map((t, i) => {
+                {temperaments
+                  ? temperaments.map((t, i) => {
                       return (
                         <p key={i} className={s.tempText}>
                           {t.name}
