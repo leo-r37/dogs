@@ -13,6 +13,13 @@ const CreateBreed = ({ temperaments, getTemperaments, createBreed }) => {
 
   const history = useHistory();
 
+  let [notification, setNotification] = useState({
+    status: false,
+    title: "Error!",
+    msg: "Something went wrong",
+    ico: "",
+  });
+
   let [input, setInput] = useState({
     imageUrl: "",
     name: "",
@@ -184,6 +191,12 @@ const CreateBreed = ({ temperaments, getTemperaments, createBreed }) => {
     let inputValue = e.target.value;
 
     clearErrors(inputName);
+    setNotification({
+      status: false,
+      title: "Error!",
+      msg: "Something went wrong",
+      ico: "",
+    });
 
     setInput({
       ...input,
@@ -213,14 +226,7 @@ const CreateBreed = ({ temperaments, getTemperaments, createBreed }) => {
   };
 
   const handleDisabled = () => {
-    let {
-      name,
-      weightMax,
-      weightMin,
-      heightMax,
-      heightMin,
-      lifeSpan,
-    } = input;
+    let { name, weightMax, weightMin, heightMax, heightMin, lifeSpan } = input;
     if (
       !name ||
       !weightMax ||
@@ -234,7 +240,7 @@ const CreateBreed = ({ temperaments, getTemperaments, createBreed }) => {
     else return false;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     clearErrors("temperaments");
     clearErrors("imageUrl");
     if (url !== input.imageUrl)
@@ -242,18 +248,59 @@ const CreateBreed = ({ temperaments, getTemperaments, createBreed }) => {
     else if (input.temperaments.length <= 0)
       setError({ ...error, temperaments: "Select at least one temperament" });
     else {
-      createBreed(input);
-      history.push("/breeds");
+      try {
+        let response = await createBreed(input);
+        if (response === 201)
+          setNotification({
+            ...notification,
+            status: true,
+            title: "Success!",
+            msg: "Successfully created breed",
+            ico: "✅",
+          });
+        setTimeout(() => {
+          history.push("/breeds");
+        }, 3000);
+      } catch (e) {
+        let { detail } = e.response.data;
+        if (detail.startsWith("Ya existe la llave")) {
+          setError({ ...error, name: "Choose another name" });
+          setNotification({
+            ...notification,
+            status: true,
+            msg: "Breed already created",
+          });
+        }
+      }
     }
   };
 
   const handleCancel = () => {
     history.goBack();
-  }
+  };
 
   return (
     <div>
       <Navbar />
+
+      {notification.status ? (
+        <div className={s.notification}>
+          <div
+            className={
+              notification.title === "Error!"
+                ? s.notificationTitleError
+                : s.notificationTitleSuccess
+            }
+          >
+            {notification.title}
+          </div>
+          <div className={s.notificationTextAndIconArea}>
+            <div className={s.notificationText}>{notification.msg}</div>
+            <div className={s.notificationIcon}>{notification.ico || "🚫"}</div>
+          </div>
+        </div>
+      ) : null}
+
       <div className={s.container}>
         <div className={s.formDiv}>
           <div className={s.imageAndDataDiv}>
@@ -280,7 +327,7 @@ const CreateBreed = ({ temperaments, getTemperaments, createBreed }) => {
                   onKeyUp={(e) => handleImageInputKey(e)}
                 />
                 <button className={s.loadImageButton} onClick={handleLoadImage}>
-                  LOAD
+                  Load image
                 </button>
               </div>
             </div>
@@ -432,7 +479,10 @@ const CreateBreed = ({ temperaments, getTemperaments, createBreed }) => {
         </div>
 
         <div className={s.buttonContainer}>
-          <button className={`${s.footerButton} ${s.cancelButton}`} onClick={handleCancel}>
+          <button
+            className={`${s.footerButton} ${s.cancelButton}`}
+            onClick={handleCancel}
+          >
             Cancel
           </button>
           <button

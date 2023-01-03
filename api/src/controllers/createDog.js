@@ -29,7 +29,7 @@ const createDog = async (req, res) => {
     res.status(201).send(`Breed created with id ${newDog.id}`);
   } catch (e) {
     console.log(e);
-    res.status(400).json({ error: e.message });
+    res.status(400).json({ error: e.message, detail: e.parent.detail });
   }
 };
 

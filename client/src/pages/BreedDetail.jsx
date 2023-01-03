@@ -1,6 +1,6 @@
 import s from "./BreedDetail.module.css";
 import { connect } from "react-redux";
-import { Link, useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 import Navbar from "../components/Navbar";
 import Loading from "../components/Loading.jsx";

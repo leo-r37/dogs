@@ -14,23 +14,28 @@ module.exports = (sequelize) => {
         primaryKey: true,
       },
       name: {
-        type: DataTypes.STRING(50),
+        type: DataTypes.STRING(30),
         allowNull: false,
+        unique: true,
+        validate: {
+          notNull: true,
+          len: [1, 30]
+        }
       },
       heightMin: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(3),
         allowNull: false,
       },
       heightMax: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(3),
         allowNull: false,
       },
       weightMin: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(3),
         allowNull: false,
       },
       weightMax: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(3),
         allowNull: false,
       },
       life_span: {

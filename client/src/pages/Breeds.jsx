@@ -32,7 +32,6 @@ const Breeds = ({
   firstPage,
   clearFilters,
 }) => {
-  // if (breeds.length <= 0) getData();
 
   useEffect(() => {
     getData();

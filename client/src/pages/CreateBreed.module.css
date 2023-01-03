@@ -1,3 +1,45 @@
+.notification {
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid gray;
+  border-radius: 5px;
+  width: 220px;
+  height: 60px;
+  position: absolute;
+  bottom: 50px;
+  right: 30px;
+  box-shadow: 5px 5px 10px #000;
+}
+
+.notificationTitleError {
+  height: 30%;
+  color: red;
+}
+
+.notificationTitleSuccess {
+  height: 30%;
+  color: green;
+}
+
+.notificationTextAndIconArea {
+  height: 70%;
+  display: flex;
+}
+
+.notificationText {
+  width: 80%;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.notificationIcon {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -97,6 +139,7 @@
   width: 100px;
   height: 30px;
   background-color: #f7ce68;
+  border-radius: 5px;
   font-weight: bold;
   display: flex;
   justify-content: center;
@@ -296,6 +339,7 @@
 
 .footerButton {
   background-color: #7b868e;
+  border-radius: 5px;
   width: 100px;
   height: 40px;
   display: flex;
