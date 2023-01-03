@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import s from "./Breeds.module.css";
 import {
@@ -6,6 +6,7 @@ import {
   clearSearch,
   firstPage,
   clearFilters,
+  getDogById,
 } from "../redux/actions";
 
 import Loading from "../components/Loading.jsx";
@@ -16,6 +17,7 @@ import SearchBar from "../components/SearchBar";
 import TemperamentsFilter from "../components/TemperamentsFilter";
 import BreedOriginFilter from "../components/BreedOriginFilter";
 import OrderByFilter from "../components/OrderByFilter";
+import { useEffect } from "react";
 
 const Breeds = ({
   loading,
@@ -23,18 +25,30 @@ const Breeds = ({
   breeds,
   temperaments,
   getData,
+  getDogById,
   firstElement,
   lastElement,
   clearSearch,
   firstPage,
   clearFilters,
 }) => {
-  if (breeds.length <= 0) getData();
+  // if (breeds.length <= 0) getData();
+
+  useEffect(() => {
+    getData();
+  },[getData])
+
+  const history = useHistory();
 
   const handleClearFilters = () => {
     clearSearch();
     firstPage();
     clearFilters();
+  };
+
+  const handleOnClick = (id) => {
+    getDogById(id);
+    history.push(`/breeds/${id}`)
   };
 
   return (
@@ -73,7 +87,11 @@ const Breeds = ({
             <div className={s.cardsContainer}>
               {[...items].slice(firstElement, lastElement).map((b, i) => {
                 return (
-                  <Link key={i} to={`/breeds/${b.id}`} className={s.link}>
+                  <div
+                    key={i}
+                    onClick={() => handleOnClick(b.id)}
+                    className={s.link}
+                  >
                     <BreedCard
                       name={b.name}
                       weightMin={b.weightMin}
@@ -81,7 +99,7 @@ const Breeds = ({
                       image={b.image}
                       temperaments={b.temperaments}
                     />
-                  </Link>
+                  </div>
                 );
               })}
             </div>
@@ -105,6 +123,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getData: () => dispatch(getData()),
+  getDogById: (id) => dispatch(getDogById(id)),
   clearSearch: () => dispatch(clearSearch()),
   firstPage: () => dispatch(firstPage()),
   clearFilters: () => dispatch(clearFilters()),

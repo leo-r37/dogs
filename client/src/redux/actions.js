@@ -91,8 +91,12 @@ export const getBreedsByName = (name) => {
 export const getDogById = (id) => {
   return async (dispatch) => {
     dispatch(loadingOn());
-    let dog = await axios.get(`http://localhost:3001/dogs/${id}`);
-    return dispatch({ type: "GET_DOG_BY_ID", payload: dog.data });
+    try {
+      let dog = await axios.get(`http://localhost:3001/dogs/${id}`);
+      return dispatch({ type: "GET_DOG_BY_ID", payload: dog.data });
+    } catch (e) {
+      throw e;
+    }
   };
 };
 

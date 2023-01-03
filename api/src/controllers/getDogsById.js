@@ -16,7 +16,7 @@ const getDogsById = async (req, res) => {
       });
       dog ? res.send(dog) : res.status(404).send("Dog breed not found");
     } catch (e) {
-      res.status(400).json({ error: e.message });
+      res.status(400).json({ error: e.message});
     }
   } else {
     try {

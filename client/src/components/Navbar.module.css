@@ -1,39 +1,76 @@
 .container {
-    /* background-color: red; */
-    height: 10vh;
-    display: flex;
+  padding: 15px;
+  height: 50px;
+  display: flex;
 }
 
 .div {
-    width: 50vw;
-    box-sizing: border-box;
-    /* border: 1px solid black; */
-    display: flex;
-    align-items: center;
-    padding: 20px
+  width: calc(100vw / 3);
+  box-sizing: border-box;
+  /* border: 1px solid black; */
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+}
+
+.img {
+  width: 70px;
+  height: auto;
+  transform: rotate(15deg);
+  cursor: pointer;
+  position: relative;
+  top: 10px;
 }
 
 .buttons {
-    justify-content: flex-end;
+  justify-content: flex-end;
 }
 
 .unselected {
-    text-decoration: none;
-    color: #fff;
-    
-    padding: 10px;
-    box-sizing: border-box;
+  text-decoration: none;
+  color: #000;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
-.selected {
-    text-decoration: none;
-    color: #fff100;
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-    padding: 10px;
-    box-sizing: border-box;
+.createButton {
+  text-decoration: none;
+  color: #fff;
+  background-color: #ff7f00;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px rgb(39, 39, 39);
+  transition: 0.5s;
+  animation-duration: 0.5s;
+  animation-name: createButton;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.createButton:hover {
+  background-color: #fff100;
+  color: rgb(34, 34, 34);
+  transition: 0s;
 }
 
 .title {
-    font-size: 40px;
-    font-family: "Rubik Vinyl", cursive;
+  font-size: 40px;
+  font-family: "Rubik Vinyl", cursive;
+  cursor: pointer;
+}
+
+@keyframes createButton {
+  0% {
+    margin-right: initial;
+
   }
+
+  100% {
+    margin-right: 3px;
+  }
+}

@@ -12,6 +12,7 @@ const BreedDetail = ({
   getDogById,
   clearCurrentDog,
   deleteBreed,
+  breeds,
   data,
   loading,
 }) => {
@@ -21,6 +22,7 @@ const BreedDetail = ({
   const [alert, setAlert] = useState(false);
 
   if (Object.keys(data) <= 0) getDogById(id);
+
   let {
     name,
     heightMin,
@@ -41,19 +43,27 @@ const BreedDetail = ({
     history.push("/breeds");
   };
 
-  const handlePageController = (side) => {
+  const handlePageController = async (side) => {
     let newId = "";
+    let dbItems = breeds.filter((b) => typeof b.id === "string");
+    let count = dbItems.length;
     if (id.startsWith("db")) {
       let num = parseInt(id.slice(2));
       side === "left" ? num-- : num++;
-      newId = `db0${num}`;
+      if (num <= 0) return;
+      num <= count ? (newId = `db0${num}`) : (newId = 1);
     } else {
       let num = parseInt(id);
       side === "left" ? num-- : num++;
-      newId = `${num}`;
+      if (num >= 265) return;
+      num >= 1 ? (newId = `${num}`) : (newId = `db0${count}`);
     }
-    getDogById(newId);
-    history.push(`/breeds/${newId}`);
+    try {
+      history.push(`/breeds/${newId}`);
+      await getDogById(newId);
+    } catch (e) {
+      history.push("/breeds");
+    }
   };
 
   return (
@@ -80,17 +90,18 @@ const BreedDetail = ({
         </div>
       ) : null}
       <Navbar />{" "}
-      <Link to="/breeds" onClick={clearCurrentDog} className={s.link}>
-        Home
-      </Link>
       {loading ? (
         <Loading />
       ) : (
         <div className={s.container}>
-          <div className={s.pageControllerDiv}>
+          <div
+            className={
+              id !== "db01" ? s.pageControllerDiv : s.pageControllerDivDisabled
+            }
+            onClick={() => handlePageController("left")}
+          >
             <div
-              className={s.pageLeft}
-              onClick={() => handlePageController("left")}
+              className={id !== "db01" ? s.pageLeft : s.pageLeftDisabled}
             ></div>
           </div>
 
@@ -144,10 +155,14 @@ const BreedDetail = ({
             </div>
           </div>
 
-          <div className={s.pageControllerDiv}>
+          <div
+            className={
+              id !== "264" ? s.pageControllerDiv : s.pageControllerDivDisabled
+            }
+            onClick={() => handlePageController("right")}
+          >
             <div
-              className={s.pageRight}
-              onClick={() => handlePageController("right")}
+              className={id !== "264" ? s.pageRight : s.pageRightDisabled}
             ></div>
           </div>
         </div>
@@ -158,6 +173,7 @@ const BreedDetail = ({
 
 const mapStateToProps = (state) => ({
   loading: state.loading,
+  breeds: state.breeds,
   data: state.currentDog,
 });
 
