@@ -125,9 +125,9 @@ const TemperamentsFilter = ({
 };
 
 const mapStateToProps = (state) => ({
-  filters: state.filters,
-  items: state.items,
-  breeds: state.breeds,
+  filters: state.filters.filters,
+  items: state.breeds.items,
+  breeds: state.breeds.breeds,
 });
 
 const mapDispatchToProps = (dispatch) => ({

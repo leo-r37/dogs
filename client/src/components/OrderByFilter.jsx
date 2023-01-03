@@ -110,7 +110,7 @@ const OrderByFilter = ({ items, setItems, firstPage }) => {
 };
 
 const mapStateToProps = (state) => ({
-  items: state.items
+  items: state.breeds.items
 });
 
 const mapDispatchToProps = (dispatch) => ({

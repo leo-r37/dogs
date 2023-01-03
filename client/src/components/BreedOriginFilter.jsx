@@ -82,7 +82,7 @@ const BreedOriginFilter = ({ breeds, setItems, firstPage }) => {
 };
 
 const mapStateToProps = (state) => ({
-  breeds: state.breeds,
+  breeds: state.breeds.breeds,
 });
 
 const mapDispatchToProps = (dispatch) => ({

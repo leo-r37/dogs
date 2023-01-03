@@ -113,11 +113,11 @@ const PageController = ({
 };
 
 const mapStateToProps = (state) => ({
-  items: state.items,
-  breeds: state.breeds,
-  currentPage: state.currentPage,
-  itemsPerPage: state.itemsPerPage,
-  breedsByName: state.breedsByName,
+  items: state.breeds.items,
+  breeds: state.breeds.breeds,
+  currentPage: state.pages.currentPage,
+  itemsPerPage: state.pages.itemsPerPage,
+  breedsByName: state.pages.breedsByName,
 });
 
 const mapDispatchToProps = (dispatch) => ({

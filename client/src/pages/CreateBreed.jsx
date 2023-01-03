@@ -499,7 +499,7 @@ const CreateBreed = ({ temperaments, getTemperaments, createBreed }) => {
 };
 
 const mapStateToProps = (state) => ({
-  temperaments: state.temperaments,
+  temperaments: state.breeds.temperaments,
 });
 
 const mapDispatchToProps = (dispatch) => ({

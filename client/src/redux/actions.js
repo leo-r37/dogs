@@ -39,10 +39,9 @@ export const createBreed = (breed) => {
     dispatch(loadingOn());
     try {
       let response = await axios.post("http://localhost:3001/dogs", newBreed);
-      console.log('respuesta positiva desde actions')
-      if (response.status === 201) return (response.status)
+      if (response.status === 201) return response.status;
     } catch (e) {
-      throw e
+      throw e;
     }
     let dogs = await axios.get("http://localhost:3001/dogs");
     return dispatch({ type: "GET_BREEDS", payload: dogs.data });

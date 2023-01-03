@@ -111,13 +111,13 @@ const Breeds = ({
 };
 
 const mapStateToProps = (state) => ({
-  loading: state.loading,
-  items: state.items,
-  breeds: state.breeds,
-  temperaments: state.temperaments,
-  filters: state.filters,
-  firstElement: state.firstElement,
-  lastElement: state.lastElement,
+  loading: state.breeds.loading,
+  items: state.breeds.items,
+  breeds: state.breeds.breeds,
+  temperaments: state.breeds.temperaments,
+  filters: state.filters.filters,
+  firstElement: state.pages.firstElement,
+  lastElement: state.pages.lastElement,
 });
 
 const mapDispatchToProps = (dispatch) => ({

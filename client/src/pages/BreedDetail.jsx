@@ -172,9 +172,9 @@ const BreedDetail = ({
 };
 
 const mapStateToProps = (state) => ({
-  loading: state.loading,
-  breeds: state.breeds,
-  data: state.currentDog,
+  loading: state.breeds.loading,
+  breeds: state.breeds.breeds,
+  data: state.breeds.currentDog,
 });
 
 const mapDispatchToProps = (dispatch) => ({
