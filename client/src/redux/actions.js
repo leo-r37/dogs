@@ -116,13 +116,18 @@ export const clearSearch = () => {
 export const getData = () => {
   return async (dispatch) => {
     dispatch(loadingOn());
-    let dogs = await axios.get("http://localhost:3001/dogs");
-    let temperaments = await axios.get("http://localhost:3001/temperaments");
-    return dispatch({
-      type: "GET_DATA",
-      breeds: dogs.data,
-      temperaments: temperaments.data,
-    });
+    try {
+      let dogs = await axios.get("http://localhost:3001/dogs");
+      let temperaments = await axios.get("http://localhost:3001/temperaments");
+      return dispatch({
+        type: "GET_DATA",
+        breeds: dogs.data,
+        temperaments: temperaments.data,
+      });
+    } catch (e) {
+      console.log("hubo un error");
+      console.log(e);
+    }
   };
 };
 

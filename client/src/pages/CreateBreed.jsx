@@ -1,14 +1,19 @@
 import s from "./CreateBreed.module.css";
 import { connect } from "react-redux";
 import { useState } from "react";
-import { createBreed, getTemperaments } from "../redux/actions";
+import { getData, createBreed, getTemperaments } from "../redux/actions";
 
 import picture from "../imgs/dogPicture.png";
 
 import Navbar from "../components/Navbar";
 import { useHistory } from "react-router-dom";
 
-const CreateBreed = ({ temperaments, getTemperaments, createBreed }) => {
+const CreateBreed = ({
+  temperaments,
+  getData,
+  getTemperaments,
+  createBreed,
+}) => {
   if (temperaments.length <= 0) getTemperaments();
 
   const history = useHistory();
@@ -258,6 +263,7 @@ const CreateBreed = ({ temperaments, getTemperaments, createBreed }) => {
             msg: "Successfully created breed",
             ico: "✅",
           });
+        getData();
         setTimeout(() => {
           history.push("/breeds");
         }, 3000);
@@ -503,6 +509,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  getData: () => dispatch(getData()),
   getTemperaments: () => dispatch(getTemperaments()),
   createBreed: (breed) => dispatch(createBreed(breed)),
 });

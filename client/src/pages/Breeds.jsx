@@ -32,10 +32,9 @@ const Breeds = ({
   firstPage,
   clearFilters,
 }) => {
-
   useEffect(() => {
-    getData();
-  },[getData])
+    if (items.length <= 0) getData();
+  }, [getData, items]);
 
   const history = useHistory();
 
@@ -47,7 +46,7 @@ const Breeds = ({
 
   const handleOnClick = (id) => {
     getDogById(id);
-    history.push(`/breeds/${id}`)
+    history.push(`/breeds/${id}`);
   };
 
   return (
