@@ -7,6 +7,9 @@ import {
   firstPage,
   clearFilters,
   getDogById,
+  setNotification,
+  hideNotification,
+  showNotification,
 } from "../redux/actions";
 
 import Loading from "../components/Loading.jsx";
@@ -18,6 +21,7 @@ import TemperamentsFilter from "../components/TemperamentsFilter";
 import BreedOriginFilter from "../components/BreedOriginFilter";
 import OrderByFilter from "../components/OrderByFilter";
 import { useEffect } from "react";
+import Notification from "../components/Notification";
 
 const Breeds = ({
   loading,
@@ -31,10 +35,21 @@ const Breeds = ({
   clearSearch,
   firstPage,
   clearFilters,
+  notificationStatus,
+  notificationTitle,
+  setNotification,
+  hideNotification,
+  showNotification,
 }) => {
   useEffect(() => {
     if (items.length <= 0) getData();
-  }, [getData, items]);
+    if (notificationTitle) {
+      showNotification();
+      setTimeout(() => {
+        hideNotification()
+      },3000)
+    }
+  }, [getData, items, notificationTitle, hideNotification, showNotification]);
 
   const history = useHistory();
 
@@ -52,6 +67,7 @@ const Breeds = ({
   return (
     <div>
       <Navbar />
+      { notificationStatus ? <Notification /> : null}
       {loading ? (
         <Loading />
       ) : (
@@ -117,6 +133,8 @@ const mapStateToProps = (state) => ({
   filters: state.filters.filters,
   firstElement: state.pages.firstElement,
   lastElement: state.pages.lastElement,
+  notificationStatus: state.notification.status,
+  notificationTitle: state.notification.title,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -125,6 +143,10 @@ const mapDispatchToProps = (dispatch) => ({
   clearSearch: () => dispatch(clearSearch()),
   firstPage: () => dispatch(firstPage()),
   clearFilters: () => dispatch(clearFilters()),
+  setNotification: (title, msg, ico) =>
+    dispatch(setNotification(title, msg, ico)),
+  showNotification: () => dispatch(showNotification()),
+  hideNotification: () => dispatch(hideNotification()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Breeds);

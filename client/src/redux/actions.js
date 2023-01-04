@@ -39,21 +39,26 @@ export const createBreed = (breed) => {
     dispatch(loadingOn());
     try {
       let response = await axios.post("http://localhost:3001/dogs", newBreed);
-      if (response.status === 201) return response.status;
+      if (response.status === 201) {
+        let dogs = await axios.get("http://localhost:3001/dogs");
+        return dispatch({ type: "GET_BREEDS", payload: dogs.data });
+      }
     } catch (e) {
       throw e;
     }
-    let dogs = await axios.get("http://localhost:3001/dogs");
-    return dispatch({ type: "GET_BREEDS", payload: dogs.data });
   };
 };
 
 export const deleteBreed = (id) => {
   return async (dispatch) => {
     dispatch(loadingOn());
-    await axios.delete(`http://localhost:3001/dogs/${id}`);
-    let dogs = await axios.get("http://localhost:3001/dogs");
-    return dispatch({ type: "GET_BREEDS", payload: dogs.data });
+    try {
+      await axios.delete(`http://localhost:3001/dogs/${id}`);
+      let dogs = await axios.get("http://localhost:3001/dogs");
+      return dispatch({ type: "GET_BREEDS", payload: dogs.data });
+    } catch (e) {
+      throw e;
+    }
   };
 };
 
@@ -145,4 +150,20 @@ export const clearFilters = () => {
 
 export const setItems = (payload) => {
   return { type: "SET_ITEMS", payload };
+};
+
+export const setNotification = (title, msg, ico) => {
+  return { type: "SET_NOTIFICATION", title, msg, ico };
+};
+
+export const hideNotification = () => {
+  return { type: "HIDE_NOTIFICATION" };
+};
+
+export const showNotification = () => {
+  return { type: "SHOW_NOTIFICATION" };
+};
+
+export const clearNotification = () => {
+  return { type: "CLEAR_NOTIFICATION" };
 };

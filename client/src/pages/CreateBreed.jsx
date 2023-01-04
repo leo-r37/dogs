@@ -1,29 +1,33 @@
 import s from "./CreateBreed.module.css";
 import { connect } from "react-redux";
 import { useState } from "react";
-import { getData, createBreed, getTemperaments } from "../redux/actions";
+import {
+  getData,
+  createBreed,
+  getTemperaments,
+  setNotification,
+  showNotification,
+  hideNotification,
+} from "../redux/actions";
 
 import picture from "../imgs/dogPicture.png";
 
 import Navbar from "../components/Navbar";
 import { useHistory } from "react-router-dom";
+import Notification from "../components/Notification";
 
 const CreateBreed = ({
   temperaments,
-  getData,
   getTemperaments,
   createBreed,
+  setNotification,
+  showNotification,
+  hideNotification,
+  notificationStatus
 }) => {
   if (temperaments.length <= 0) getTemperaments();
 
   const history = useHistory();
-
-  let [notification, setNotification] = useState({
-    status: false,
-    title: "Error!",
-    msg: "Something went wrong",
-    ico: "",
-  });
 
   let [input, setInput] = useState({
     imageUrl: "",
@@ -196,12 +200,6 @@ const CreateBreed = ({
     let inputValue = e.target.value;
 
     clearErrors(inputName);
-    setNotification({
-      status: false,
-      title: "Error!",
-      msg: "Something went wrong",
-      ico: "",
-    });
 
     setInput({
       ...input,
@@ -255,27 +253,18 @@ const CreateBreed = ({
     else {
       try {
         let response = await createBreed(input);
-        if (response === 201)
-          setNotification({
-            ...notification,
-            status: true,
-            title: "Success!",
-            msg: "Successfully created breed",
-            ico: "✅",
-          });
-        getData();
-        setTimeout(() => {
-          history.push("/breeds");
-        }, 3000);
+        if (response)
+          setNotification("Success", "Successfully created breed", "✅");
+        history.push("/breeds");
       } catch (e) {
         let { detail } = e.response.data;
         if (detail.startsWith("Ya existe la llave")) {
-          setError({ ...error, name: "Choose another name" });
-          setNotification({
-            ...notification,
-            status: true,
-            msg: "Breed already created",
-          });
+          setError({ ...error, name: "Breed already created" });
+          setNotification("Error!", "Breed already created", "🚫");
+          showNotification();
+          setTimeout(() => {
+            hideNotification();
+          }, 3000);
         }
       }
     }
@@ -288,24 +277,7 @@ const CreateBreed = ({
   return (
     <div>
       <Navbar />
-
-      {notification.status ? (
-        <div className={s.notification}>
-          <div
-            className={
-              notification.title === "Error!"
-                ? s.notificationTitleError
-                : s.notificationTitleSuccess
-            }
-          >
-            {notification.title}
-          </div>
-          <div className={s.notificationTextAndIconArea}>
-            <div className={s.notificationText}>{notification.msg}</div>
-            <div className={s.notificationIcon}>{notification.ico || "🚫"}</div>
-          </div>
-        </div>
-      ) : null}
+      {notificationStatus ? <Notification /> : null}
 
       <div className={s.container}>
         <div className={s.formDiv}>
@@ -505,6 +477,7 @@ const CreateBreed = ({
 };
 
 const mapStateToProps = (state) => ({
+  notificationStatus: state.notification.status,
   temperaments: state.breeds.temperaments,
 });
 
@@ -512,6 +485,10 @@ const mapDispatchToProps = (dispatch) => ({
   getData: () => dispatch(getData()),
   getTemperaments: () => dispatch(getTemperaments()),
   createBreed: (breed) => dispatch(createBreed(breed)),
+  setNotification: (title, msg, ico) =>
+    dispatch(setNotification(title, msg, ico)),
+  showNotification: () => dispatch(showNotification()),
+  hideNotification: () => dispatch(hideNotification()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateBreed);

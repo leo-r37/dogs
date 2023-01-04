@@ -1,20 +1,25 @@
 import s from "./BreedDetail.module.css";
+import { useState } from "react";
 import { connect } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 
 import Navbar from "../components/Navbar";
 import Loading from "../components/Loading.jsx";
 
-import { getDogById, clearCurrentDog, deleteBreed } from "../redux/actions";
-import { useState } from "react";
+import {
+  getDogById,
+  clearCurrentDog,
+  deleteBreed,
+  setNotification,
+} from "../redux/actions";
 
 const BreedDetail = ({
   getDogById,
-  clearCurrentDog,
   deleteBreed,
   breeds,
   data,
   loading,
+  setNotification,
 }) => {
   let { id } = useParams();
   const history = useHistory();
@@ -38,9 +43,18 @@ const BreedDetail = ({
     setAlert(!alert);
   };
 
-  const handleDelete = () => {
-    deleteBreed(id);
-    history.push("/breeds");
+  const handleDelete = async () => {
+    setAlert(!alert);
+    try {
+      let response = await deleteBreed(id);
+      if (response) {
+        setNotification("Success", "Breed deleted succesfully", "✅");
+        history.push("/breeds");
+      }
+    } catch (e) {
+      console.log("error desde breed detail");
+      console.log(e);
+    }
   };
 
   const handlePageController = async (side) => {
@@ -181,6 +195,8 @@ const mapDispatchToProps = (dispatch) => ({
   getDogById: (id) => dispatch(getDogById(id)),
   clearCurrentDog: () => dispatch(clearCurrentDog()),
   deleteBreed: (id) => dispatch(deleteBreed(id)),
+  setNotification: (title, msg, ico) =>
+    dispatch(setNotification(title, msg, ico)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BreedDetail);
