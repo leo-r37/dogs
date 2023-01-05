@@ -73,10 +73,12 @@ const BreedDetail = ({
       num >= 1 ? (newId = `${num}`) : (newId = `db0${count}`);
     }
     try {
-      history.push(`/breeds/${newId}`);
       await getDogById(newId);
+      history.push(`/breeds/${newId}`);
     } catch (e) {
+      setNotification("Error!", "Can't find a breed with that ID", "🚫");
       history.push("/breeds");
+      return e;
     }
   };
 

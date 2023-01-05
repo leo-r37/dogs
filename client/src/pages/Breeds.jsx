@@ -22,6 +22,7 @@ import BreedOriginFilter from "../components/BreedOriginFilter";
 import OrderByFilter from "../components/OrderByFilter";
 import { useEffect } from "react";
 import Notification from "../components/Notification";
+import Footer from "../components/Footer";
 
 const Breeds = ({
   loading,
@@ -46,8 +47,8 @@ const Breeds = ({
     if (notificationTitle) {
       showNotification();
       setTimeout(() => {
-        hideNotification()
-      },3000)
+        hideNotification();
+      }, 3000);
     }
   }, [getData, items, notificationTitle, hideNotification, showNotification]);
 
@@ -67,7 +68,7 @@ const Breeds = ({
   return (
     <div>
       <Navbar />
-      { notificationStatus ? <Notification /> : null}
+      {notificationStatus ? <Notification /> : null}
       {loading ? (
         <Loading />
       ) : (
@@ -119,6 +120,7 @@ const Breeds = ({
             </div>
             <PageController />
           </div>
+          <Footer />
         </div>
       )}
     </div>

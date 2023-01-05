@@ -1,9 +1,14 @@
 import { connect } from "react-redux";
 import { useState } from "react";
 import s from "./BreedOriginFilter.module.css";
-import { setItems, firstPage } from "../redux/actions";
+import { setItems, firstPage, setNotification } from "../redux/actions";
 
-const BreedOriginFilter = ({ breeds, setItems, firstPage }) => {
+const BreedOriginFilter = ({
+  breeds,
+  setItems,
+  firstPage,
+  setNotification,
+}) => {
   const [display, setDisplay] = useState(false);
   const [name, setName] = useState("Origin");
 
@@ -34,17 +39,22 @@ const BreedOriginFilter = ({ breeds, setItems, firstPage }) => {
         break;
       case "Incorporated":
         let dbItems = breeds.filter((b) => typeof b.id === "string");
-        setItems(dbItems);
-        setName("Incorporated");
-        firstPage();
-        toggleVisibility();
+        if (dbItems.length <= 0) {
+          setNotification("Error!", "There're no breeds created", "⛔");
+          toggleVisibility();
+        } else {
+          setItems(dbItems);
+          setName("Incorporated");
+          firstPage();
+          toggleVisibility();
+        }
         break;
       default:
         break;
     }
   };
 
-  const options = ['All', 'Existent', 'Incorporated'];
+  const options = ["All", "Existent", "Incorporated"];
 
   return (
     <div className={s.container}>
@@ -59,23 +69,23 @@ const BreedOriginFilter = ({ breeds, setItems, firstPage }) => {
 
       <div id="origin" className={s.elementsContainer}>
         {options.map((t, i) => {
-            return (
-              <div key={i} className={s.element}>
-                <div className={s.tempCheckDiv}>
-                  <input
-                    type="radio"
-                    name="origin"
-                    id={t}
-                    value={t}
-                    onChange={(e) => handleOrigin(e)}
-                  />
-                </div>
-                <div className={s.tempTextDiv}>
-                  <label htmlFor={t}>{t}</label>
-                </div>
+          return (
+            <div key={i} className={s.element}>
+              <div className={s.tempCheckDiv}>
+                <input
+                  type="radio"
+                  name="origin"
+                  id={t}
+                  value={t}
+                  onChange={(e) => handleOrigin(e)}
+                />
               </div>
-            );
-          })}
+              <div className={s.tempTextDiv}>
+                <label htmlFor={t}>{t}</label>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
@@ -88,6 +98,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   setItems: (data) => dispatch(setItems(data)),
   firstPage: () => dispatch(firstPage()),
+  setNotification: (title, msg, ico) =>
+    dispatch(setNotification(title, msg, ico)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BreedOriginFilter);
