@@ -8,6 +8,7 @@ import {
   setNotification,
   showNotification,
   hideNotification,
+  getBreedsByName,
 } from "../redux/actions";
 
 import picture from "../imgs/dogPicture.png";
@@ -20,10 +21,11 @@ const CreateBreed = ({
   temperaments,
   getTemperaments,
   createBreed,
+  getBreedsByName,
   setNotification,
   showNotification,
   hideNotification,
-  notificationStatus
+  notificationStatus,
 }) => {
   if (temperaments.length <= 0) getTemperaments();
 
@@ -252,19 +254,24 @@ const CreateBreed = ({
       setError({ ...error, temperaments: "Select at least one temperament" });
     else {
       try {
-        let response = await createBreed(input);
-        if (response)
-          setNotification("Success", "Successfully created breed", "✅");
-        history.push("/breeds");
-      } catch (e) {
-        let { detail } = e.response.data;
-        if (detail.startsWith("Ya existe la llave")) {
-          setError({ ...error, name: "Breed already created" });
-          setNotification("Error!", "Breed already created", "🚫");
+        let existentDog = await getBreedsByName(input.name);
+        if (existentDog) {
+          setError({ ...error, name: "Breed already existent" });
+          setNotification("Error!", "Breed already existent", "🚫");
           showNotification();
           setTimeout(() => {
             hideNotification();
           }, 3000);
+        }
+      } catch (e) {
+        console.log('creating breed');
+        try {
+          let response = await createBreed(input);
+          if (response)
+            setNotification("Success", "Successfully created breed", "✅");
+          history.push("/breeds");
+        } catch (e) {
+          console.log(e);
         }
       }
     }
@@ -484,6 +491,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   getData: () => dispatch(getData()),
   getTemperaments: () => dispatch(getTemperaments()),
+  getBreedsByName: (name) => dispatch(getBreedsByName(name)),
   createBreed: (breed) => dispatch(createBreed(breed)),
   setNotification: (title, msg, ico) =>
     dispatch(setNotification(title, msg, ico)),

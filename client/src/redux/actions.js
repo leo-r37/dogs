@@ -148,6 +148,10 @@ export const clearFilters = () => {
   return { type: "CLEAR_FILTERS" };
 };
 
+export const setName = (payload) => {
+  return { type: "SET_NAME", payload}
+}
+
 export const setItems = (payload) => {
   return { type: "SET_ITEMS", payload };
 };

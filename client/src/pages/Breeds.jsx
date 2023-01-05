@@ -3,9 +3,6 @@ import { connect } from "react-redux";
 import s from "./Breeds.module.css";
 import {
   getData,
-  clearSearch,
-  firstPage,
-  clearFilters,
   getDogById,
   setNotification,
   hideNotification,
@@ -16,29 +13,20 @@ import Loading from "../components/Loading.jsx";
 import Navbar from "../components/Navbar.jsx";
 import BreedCard from "../components/BreedCard";
 import PageController from "../components/PageController";
-import SearchBar from "../components/SearchBar";
-import TemperamentsFilter from "../components/TemperamentsFilter";
-import BreedOriginFilter from "../components/BreedOriginFilter";
-import OrderByFilter from "../components/OrderByFilter";
 import { useEffect } from "react";
 import Notification from "../components/Notification";
 import Footer from "../components/Footer";
+import TopBar from "../components/TopBar";
 
 const Breeds = ({
   loading,
   items,
-  breeds,
-  temperaments,
   getData,
   getDogById,
   firstElement,
   lastElement,
-  clearSearch,
-  firstPage,
-  clearFilters,
   notificationStatus,
   notificationTitle,
-  setNotification,
   hideNotification,
   showNotification,
 }) => {
@@ -54,12 +42,6 @@ const Breeds = ({
 
   const history = useHistory();
 
-  const handleClearFilters = () => {
-    clearSearch();
-    firstPage();
-    clearFilters();
-  };
-
   const handleOnClick = (id) => {
     getDogById(id);
     history.push(`/breeds/${id}`);
@@ -73,30 +55,7 @@ const Breeds = ({
         <Loading />
       ) : (
         <div className={s.container}>
-          <div className={s.topBar}>
-            <div className={s.topBarDivs}>
-              <div className={s.filters}>
-                <TemperamentsFilter elements={temperaments} />
-                <BreedOriginFilter />
-                <OrderByFilter />
-              </div>
-            </div>
-            <div className={s.clearSearchDiv}>
-              {breeds.length !== items.length ? (
-                <div
-                  className={s.clearSearchButton}
-                  onClick={handleClearFilters}
-                >
-                  <p>CLEAR</p>
-                  <p>FILTERS</p>
-                </div>
-              ) : null}
-            </div>
-            <div className={s.topBarDivs}>
-              <SearchBar />
-            </div>
-          </div>
-
+          <TopBar />
           <div className={s.main}>
             <PageController />
             <div className={s.cardsContainer}>
@@ -142,9 +101,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   getData: () => dispatch(getData()),
   getDogById: (id) => dispatch(getDogById(id)),
-  clearSearch: () => dispatch(clearSearch()),
-  firstPage: () => dispatch(firstPage()),
-  clearFilters: () => dispatch(clearFilters()),
   setNotification: (title, msg, ico) =>
     dispatch(setNotification(title, msg, ico)),
   showNotification: () => dispatch(showNotification()),

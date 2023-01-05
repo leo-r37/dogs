@@ -1,16 +1,23 @@
 import { connect } from "react-redux";
 import { useState } from "react";
 import s from "./BreedOriginFilter.module.css";
-import { setItems, firstPage, setNotification } from "../redux/actions";
+import {
+  setItems,
+  firstPage,
+  setNotification,
+  setName,
+} from "../redux/actions";
 
 const BreedOriginFilter = ({
   breeds,
   setItems,
   firstPage,
   setNotification,
+  setName,
+  name,
 }) => {
   const [display, setDisplay] = useState(false);
-  const [name, setName] = useState("Origin");
+  // const [name, setName] = useState("Origin");
 
   const toggleVisibility = () => {
     if (display) {
@@ -93,6 +100,7 @@ const BreedOriginFilter = ({
 
 const mapStateToProps = (state) => ({
   breeds: state.breeds.breeds,
+  name: state.filters.origin,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -100,6 +108,7 @@ const mapDispatchToProps = (dispatch) => ({
   firstPage: () => dispatch(firstPage()),
   setNotification: (title, msg, ico) =>
     dispatch(setNotification(title, msg, ico)),
+  setName: (payload) => dispatch(setName(payload)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BreedOriginFilter);

@@ -1,5 +1,6 @@
 const initialState = {
   filters: [],
+  origin: "Origin",
 };
 
 const filtersReducer = (state = initialState, action) => {
@@ -18,6 +19,12 @@ const filtersReducer = (state = initialState, action) => {
       return {
         ...state,
         filters: [],
+        origin: "Origin",
+      };
+    case "SET_NAME":
+      return {
+        ...state,
+        origin: action.payload,
       };
     default:
       return { ...state };
