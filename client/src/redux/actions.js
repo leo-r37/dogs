@@ -9,7 +9,7 @@ export const loadingOn = () => {
 export const getTemperaments = () => {
   return async (dispatch) => {
     dispatch(loadingOn());
-    let temperaments = await axios.get("http://localhost:3001/temperaments");
+    let temperaments = await axios.get("/temperaments");
     return dispatch({ type: "GET_TEMPERAMENTS", payload: temperaments.data });
   };
 };
@@ -38,9 +38,9 @@ export const createBreed = (breed) => {
   return async (dispatch) => {
     dispatch(loadingOn());
     try {
-      let response = await axios.post("http://localhost:3001/dogs", newBreed);
+      let response = await axios.post("/dogs", newBreed);
       if (response.status === 201) {
-        let dogs = await axios.get("http://localhost:3001/dogs");
+        let dogs = await axios.get("/dogs");
         return dispatch({ type: "GET_BREEDS", payload: dogs.data });
       }
     } catch (e) {
@@ -73,9 +73,9 @@ export const updateBreed = (breed, id) => {
   return async (dispatch) => {
     dispatch(loadingOn());
     try {
-      let response = await axios.put(`http://localhost:3001/dogs/${id}`, newBreed);
+      let response = await axios.put(`/dogs/${id}`, newBreed);
       if (response.status === 200) {
-        let dogs = await axios.get("http://localhost:3001/dogs");
+        let dogs = await axios.get("/dogs");
         return dispatch({ type: "GET_BREEDS", payload: dogs.data });
       }
     } catch (e) {
@@ -88,8 +88,8 @@ export const deleteBreed = (id) => {
   return async (dispatch) => {
     dispatch(loadingOn());
     try {
-      await axios.delete(`http://localhost:3001/dogs/${id}`);
-      let dogs = await axios.get("http://localhost:3001/dogs");
+      await axios.delete(`/dogs/${id}`);
+      let dogs = await axios.get("/dogs");
       return dispatch({ type: "GET_BREEDS", payload: dogs.data });
     } catch (e) {
       throw e;
@@ -100,7 +100,7 @@ export const deleteBreed = (id) => {
 export const getBreeds = () => {
   return async (dispatch) => {
     dispatch(loadingOn());
-    let dogs = await axios.get("http://localhost:3001/dogs");
+    let dogs = await axios.get("/dogs");
     return dispatch({ type: "GET_BREEDS", payload: dogs.data });
   };
 };
@@ -128,7 +128,7 @@ export const setPage = (page) => {
 export const getBreedsByName = (name) => {
   return async (dispatch) => {
     dispatch(loadingOn());
-    let dogs = await axios.get(`http://localhost:3001/dogs?name=${name}`);
+    let dogs = await axios.get(`/dogs?name=${name}`);
     return dispatch({ type: "GET_BREEDS_BY_NAME", payload: dogs.data });
   };
 };
@@ -137,7 +137,7 @@ export const getDogById = (id) => {
   return async (dispatch) => {
     dispatch(loadingOn());
     try {
-      let dog = await axios.get(`http://localhost:3001/dogs/${id}`);
+      let dog = await axios.get(`/dogs/${id}`);
       return dispatch({ type: "GET_DOG_BY_ID", payload: dog.data });
     } catch (e) {
       throw e;
@@ -157,8 +157,8 @@ export const getData = () => {
   return async (dispatch) => {
     dispatch(loadingOn());
     try {
-      let dogs = await axios.get("http://localhost:3001/dogs");
-      let temperaments = await axios.get("http://localhost:3001/temperaments");
+      let dogs = await axios.get("/dogs");
+      let temperaments = await axios.get("/temperaments");
       return dispatch({
         type: "GET_DATA",
         breeds: dogs.data,

@@ -7,6 +7,9 @@ import CreateBreed from "./pages/CreateBreed.jsx";
 import BreedDetail from "./pages/BreedDetail.jsx";
 import EditBreed from "./pages/EditBreed.jsx";
 
+import axios from "axios";
+axios.defaults.baseURL = 'http://localhost:3001/'
+
 function App() {
   return (
     <div className="App">
