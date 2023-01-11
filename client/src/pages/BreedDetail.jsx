@@ -57,6 +57,10 @@ const BreedDetail = ({
     }
   };
 
+  const handleEdit = () => {
+    history.push(`/edit/${id}`)
+  }
+
   const handlePageController = async (side) => {
     let newId = "";
     let dbItems = breeds.filter((b) => typeof b.id === "string");
@@ -157,15 +161,26 @@ const BreedDetail = ({
                   : null}
               </div>
 
-              <div className={s.controllerDiv}>
+              <div className={s.buttonsAreaContainer}>
                 {typeof data.id === "string" ? (
-                  <button
-                    className={`${s.button} ${s.buttonDelete}`}
-                    onClick={handleConfirmation}
-                  >
-                    <i className="fi fi-rr-trash"></i>
-                    <p>Delete</p>
-                  </button>
+                  <div className={s.buttonsArea}>
+
+                    <button
+                      className={`${s.button} ${s.buttonEdit}`}
+                      onClick={handleEdit}
+                    >
+                      <i className="fi fi-rr-pencil"></i>
+                      <p>Edit</p>
+                    </button>
+
+                    <button
+                      className={`${s.button} ${s.buttonDelete}`}
+                      onClick={handleConfirmation}
+                    >
+                      <i className="fi fi-rr-trash"></i>
+                      <p>Delete</p>
+                    </button>
+                  </div>
                 ) : null}
               </div>
             </div>

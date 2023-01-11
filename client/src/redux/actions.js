@@ -49,6 +49,41 @@ export const createBreed = (breed) => {
   };
 };
 
+export const updateBreed = (breed, id) => {
+  let {
+    name,
+    heightMin,
+    heightMax,
+    weightMin,
+    weightMax,
+    lifeSpan,
+    imageUrl,
+    temperaments,
+  } = breed;
+  let newBreed = {
+    name,
+    heightMin,
+    heightMax,
+    weightMin,
+    weightMax,
+    life_span: lifeSpan,
+    image: imageUrl,
+    temperaments,
+  };
+  return async (dispatch) => {
+    dispatch(loadingOn());
+    try {
+      let response = await axios.put(`http://localhost:3001/dogs/${id}`, newBreed);
+      if (response.status === 200) {
+        let dogs = await axios.get("http://localhost:3001/dogs");
+        return dispatch({ type: "GET_BREEDS", payload: dogs.data });
+      }
+    } catch (e) {
+      throw e;
+    }
+  };
+};
+
 export const deleteBreed = (id) => {
   return async (dispatch) => {
     dispatch(loadingOn());

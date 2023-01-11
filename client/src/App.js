@@ -5,6 +5,7 @@ import Landing from "./pages/Landing.jsx";
 import Breeds from "./pages/Breeds.jsx";
 import CreateBreed from "./pages/CreateBreed.jsx";
 import BreedDetail from "./pages/BreedDetail.jsx";
+import EditBreed from "./pages/EditBreed.jsx";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/create" component={CreateBreed} />
         <Route exact path="/breeds" component={Breeds} />
         <Route path="/breeds/:id" component={BreedDetail} />        
+        <Route path="/edit/:id" component={EditBreed} />
       </Switch>
     </div>
   );

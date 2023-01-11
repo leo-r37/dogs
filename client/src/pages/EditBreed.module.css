@@ -1,0 +1,342 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.formDiv {
+  width: 60%;
+  display: flex;
+  gap: 10px;
+}
+
+.imageAndDataDiv {
+  background-color: #fff;
+  border: 1px solid rgb(189, 189, 189);
+  border-radius: 5px;
+  width: calc((100% / 3) * 2);
+  height: 70vh;
+  overflow: hidden;
+  box-shadow: 2px 2px 10px rgb(173, 127, 0);
+  display: flex;
+}
+
+.imageSection {
+  position: relative;
+  background-color: #ff7f00;
+  height: 100%;
+  width: 50%;
+}
+
+.imagePlaceDiv {
+  padding: 10px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imagePlaceDiv img {
+  background-color: rgba(192, 121, 80, 0.5);
+  width: 90%;
+  max-height: 90%;
+  border: 2px solid white;
+  border-radius: 5px;
+}
+
+.errorDiv {
+  position: absolute;
+  /* background-color: rgba(255, 217, 217, 0.795); */
+  background-color: #fff;
+  width: 220px;
+  height: 30px;
+  box-sizing: border-box;
+  /* border: 1px solid red; */
+  border-radius: 5px;
+  color: red;
+  font-size: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageErrorDiv {
+  left: 15px;
+  bottom: 130px;
+}
+
+.singleInputErrorDiv {
+  top: 65px;
+}
+
+.rangeInputErrorDiv {
+  top: 43px;
+}
+
+.temperamentsErrorDiv {
+  top: 50px;
+}
+
+.imageInputDiv {
+  width: 100;
+  height: 30%;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loadImageButton {
+  width: 100px;
+  height: 30px;
+  background-color: #f7ce68;
+  border-radius: 5px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.2s;
+}
+
+.loadImageButton:hover {
+  background-color: #c3a352;
+  transition: 0s;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.loadImageButton:focus {
+  outline-style: solid;
+  outline-color: #f7ce68;
+}
+
+.dataSection {
+  height: 100%;
+  width: 50%;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.input {
+  height: 35px;
+  background-color: antiquewhite;
+  border: none;
+  border-radius: 5px;
+  padding: 6px;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.inputWithError {
+  height: 35px;
+  background-color: antiquewhite;
+  outline: red;
+  border: 2px solid red;
+  border-radius: 5px;
+  padding: 6px;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.inputImageUrl:focus {
+  outline: #fff;
+  border: 2px solid #fff;
+}
+
+.inputContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.inputRangeContainer {
+  position: relative;
+  display: flex;
+  gap: 20px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.inputRange {
+  text-align: center;
+  width: 20%;
+}
+
+.requiredField {
+  color: crimson;
+}
+
+.temperamentsSection {
+  background-color: #fff;
+  border: 1px solid rgb(189, 189, 189);
+  box-sizing: border-box;
+  border-radius: 5px;
+  width: calc(100% / 3);
+  height: 70vh;
+  overflow-y: scroll;
+  box-shadow: 2px 2px 10px rgb(173, 127, 0);
+}
+
+.temperamentsSectionError {
+  /* border: 2px solid red; */
+  outline-style: solid;
+  outline-color: red;
+  background-color: #fff;
+  box-sizing: border-box;
+  border-radius: 5px;
+  width: calc(100% / 3);
+  height: 70vh;
+  overflow-y: scroll;
+  box-shadow: 2px 2px 10px rgb(173, 127, 0);
+}
+
+.temperamentsHeader {
+  position: relative;
+  padding-top: 20px;
+  box-sizing: border-box;
+  background-color: #ff7f00;
+  color: #fff;
+  width: 100%;
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.temperamentsContainer {
+  display: grid;
+  height: auto;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(62, 5vh);
+}
+
+.temperamentDiv {
+  border: 1px solid blue;
+}
+
+.temperamentsSection::-webkit-scrollbar {
+  width: 12px;
+}
+
+.temperamentsSection::-webkit-scrollbar-track {
+  background: #fbab7e;
+}
+
+.temperamentsSection::-webkit-scrollbar-thumb {
+  background-color: #ff7f00;
+  border-radius: 20px;
+  border: 3px solid #f7ce68;
+}
+
+.temperamentsSectionError::-webkit-scrollbar {
+  width: 12px;
+}
+
+.temperamentsSectionError::-webkit-scrollbar-track {
+  background: #fbab7e;
+}
+
+.temperamentsSectionError::-webkit-scrollbar-thumb {
+  background-color: #ff7f00;
+  border-radius: 20px;
+  border: 3px solid #f7ce68;
+}
+
+.element {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.tempCheckDiv {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tempTextDiv {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.tempTextDiv label {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.buttonContainer {
+  width: 60%;
+  height: 8vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 5px;
+}
+
+.footerButton {
+  background-color: #7b868e;
+  border-radius: 5px;
+  width: 100px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  cursor: pointer;
+}
+
+.successButton {
+  background-color: #2aae47;
+  transition: 0.2s;
+}
+
+.successButton:hover {
+  background-color: #218838;
+  transition: 0.2s;
+}
+.successButton:focus {
+  outline-style: solid;
+  outline-color: #197e2f;
+}
+
+.successButton:disabled {
+  background-color: #7b868e;
+  color: rgba(200, 200, 200, 0.5);
+  cursor: not-allowed;
+}
+
+.cancelButton {
+  background-color: #a81414;
+}
+
+.cancelButton:hover {
+  background-color: #831010;
+  transition: 0.2s;
+}
+
+.cancelButton:focus {
+  outline-style: solid;
+  outline-color: #a81414;
+}

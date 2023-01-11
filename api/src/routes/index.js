@@ -7,6 +7,7 @@ const getDogsById = require("../controllers/getDogsById");
 const createDog = require("../controllers/createDog");
 const deleteDog = require("../controllers/deleteDog");
 const getTemperaments = require("../controllers/getTemperaments");
+const updateDog = require("../controllers/updateDog");
 
 const router = Router();
 
@@ -17,6 +18,7 @@ router.get("/dogs", getDogs);
 router.get("/dogs/:idRaza", getDogsById);
 router.post("/dogs", createDog);
 router.delete("/dogs/:id", deleteDog);
+router.put('/dogs/:id', updateDog)
 router.get("/temperaments", getTemperaments);
 
 module.exports = router;
