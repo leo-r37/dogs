@@ -8,3 +8,13 @@
     align-items: center;
     color: #fff;
 }
+
+.logo {
+    width: 25px;
+    margin-left: 10px;
+}
+
+.logo:hover {
+    outline-style: solid;
+    outline-color: #000;
+}
