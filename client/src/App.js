@@ -8,7 +8,7 @@ import BreedDetail from "./pages/BreedDetail.jsx";
 import EditBreed from "./pages/EditBreed.jsx";
 
 import axios from "axios";
-axios.defaults.baseURL = 'http://localhost:3001/'
+axios.defaults.baseURL = 'https://dogs-production-3886.up.railway.app/'
 
 function App() {
   return (
