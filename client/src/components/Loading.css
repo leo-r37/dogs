@@ -5,7 +5,7 @@
   box-sizing: border-box;
   width: 100vw;
   height: 100vh;
-  /* border: 5px solid red; */
+  /* border: .3125rem solid red; */
   background-color: rgba(30, 30, 30, .5);
   display: flex;
   justify-content: center;
@@ -21,21 +21,21 @@
 .ldio-6rhf3o5iy3f div { box-sizing: border-box!important }
 .ldio-6rhf3o5iy3f > div {
   position: absolute;
-  width: 72px;
-  height: 72px;
-  top: 14px;
-  left: 14px;
+  width: 4.5rem;
+  height: 4.5rem;
+  top: .875rem;
+  left: .875rem;
   border-radius: 50%;
-  border: 8px solid #000;
+  border: .5rem solid #000;
   border-color: #e15b64 transparent #e15b64 transparent;
   animation: ldio-6rhf3o5iy3f 1.0408163265306123s linear infinite;
 }
 
 .ldio-6rhf3o5iy3f > div:nth-child(2), .ldio-6rhf3o5iy3f > div:nth-child(4) {
-  width: 54px;
-  height: 54px;
-  top: 23px;
-  left: 23px;
+  width: 3.375rem;
+  height: 3.375rem;
+  top: 1.4375rem;
+  left: 1.4375rem;
   animation: ldio-6rhf3o5iy3f 2.0408163265306123s linear infinite reverse;
 }
 .ldio-6rhf3o5iy3f > div:nth-child(2) {
@@ -52,18 +52,18 @@
   content: "";
   display: block;
   position: absolute;
-  width: 8px;
-  height: 8px;
-  top: -8px;
-  left: 24px;
+  width: .5rem;
+  height: .5rem;
+  top: -0.5rem;
+  left: 1.5rem;
   background: #e15b64;
   border-radius: 50%;
-  box-shadow: 0 64px 0 0 #e15b64;
+  box-shadow: 0 4rem 0 0 #e15b64;
 }
 .ldio-6rhf3o5iy3f > div:nth-child(3) div:after {
-  left: -8px;
-  top: 24px;
-  box-shadow: 64px 0 0 0 #e15b64;
+  left: -0.5rem;
+  top: 1.5rem;
+  box-shadow: 4rem 0 0 0 #e15b64;
 }
 
 .ldio-6rhf3o5iy3f > div:nth-child(4) { border-color: transparent; }
@@ -77,22 +77,22 @@
   content: "";
   display: block;
   position: absolute;
-  width: 8px;
-  height: 8px;
-  top: -8px;
-  left: 15px;
+  width: .5rem;
+  height: .5rem;
+  top: -0.5rem;
+  left: .9375rem;
   background: #f8b26a;
   border-radius: 50%;
-  box-shadow: 0 46px 0 0 #f8b26a;
+  box-shadow: 0 2.875rem 0 0 #f8b26a;
 }
 .ldio-6rhf3o5iy3f > div:nth-child(4) div:after {
-  left: -8px;
-  top: 15px;
-  box-shadow: 46px 0 0 0 #f8b26a;
+  left: -0.5rem;
+  top: .9375rem;
+  box-shadow: 2.875rem 0 0 0 #f8b26a;
 }
 .loadingio-spinner-double-ring-v46rtn9qqgf {
-  width: 61px;
-  height: 61px;
+  width: 3.8125rem;
+  height: 3.8125rem;
   display: inline-block;
   overflow: hidden;
   background: rgba(0, 0, 0, 0);

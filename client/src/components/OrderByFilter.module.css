@@ -1,13 +1,13 @@
 /* .container {
-    margin: 40px;
+    margin: 2.5rem;
 } */
 
 .titleContainer {
-    border: 1px solid gray;
-    border-radius: 4px;
+    border: .0625rem solid gray;
+    border-radius: .25rem;
     background-color: #fff;
-    width: 150px;
-    height: 30px;
+    width: 9.375rem;
+    height: 1.875rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -35,15 +35,15 @@
     justify-content: center;
     align-items: center;
     line-height: 0;
-    font-size: 20px;
+    font-size: 1.25rem;
 }
 
 .elementsContainer {
     background-color: #fff;
-    border: 1px solid gray;
-    border-radius: 4px;
-    width: 150px;
-    max-height: 300px;
+    border: .0625rem solid gray;
+    border-radius: .25rem;
+    width: 9.375rem;
+    max-height: 18.75rem;
     display: none;
     position: absolute;
     transition: 0.5s;
@@ -54,12 +54,12 @@
 .applyButtonDiv {
     display: flex;
     justify-content: center;
-    padding: 5px;
+    padding: .3125rem;
     box-sizing: border-box;
 }
 
 .applyButtonDiv button {
-    margin-top: 3px;
+    margin-top: .1875rem;
 }
 
 .element {
@@ -67,7 +67,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    min-height: 25px;
+    min-height: 1.5625rem;
 }
 
 .element:hover {

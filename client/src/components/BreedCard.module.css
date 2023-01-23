@@ -1,12 +1,12 @@
 .container {
   
   background-color: #fff;
-  border: 1px solid rgb(189, 189, 189);
-  border-radius: 5px;
-  width: 300px;
-  height: 400px;
+  border: .0625rem solid rgb(189, 189, 189);
+  border-radius: .3125rem;
+  width: 18.75rem;
+  height: 25rem;
   overflow: hidden;
-  box-shadow: 2px 2px 10px rgb(173, 127, 0);
+  box-shadow: .125rem .125rem .625rem rgb(173, 127, 0);
 }
 
 .imageContainer {
@@ -23,18 +23,18 @@
 }
 
 .infoContainer {
-    padding: 10px;
+    padding: .625rem;
     box-sizing: border-box;
     height: 40%;
-    border: 1px solid rgb(189, 189, 189);
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border: .0625rem solid rgb(189, 189, 189);
+    border-bottom-left-radius: .3125rem;
+    border-bottom-right-radius: .3125rem;
 }
 
 
 
 .h2 {
-  font-size: 17px;
+  font-size: 1.0625rem;
 }
 
 .tempContainer {
@@ -44,9 +44,9 @@
 }
 
 .temp {
-  font-size: 15px;
-    margin-top: 10px;
+  font-size: .9375rem;
+    margin-top: .625rem;
     background-color: #ff7f00;
     color: #fff;
-    padding: 5px 10px;
+    padding: .3125rem .625rem;
 }

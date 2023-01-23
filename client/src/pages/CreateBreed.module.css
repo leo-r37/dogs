@@ -1,27 +1,27 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.25rem;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 1.25rem;
   box-sizing: border-box;
 }
 
 .formDiv {
   width: 60%;
   display: flex;
-  gap: 10px;
+  gap: .625rem;
 }
 
 .imageAndDataDiv {
   background-color: #fff;
-  border: 1px solid rgb(189, 189, 189);
-  border-radius: 5px;
+  border: .0625rem solid rgb(189, 189, 189);
+  border-radius: .3125rem;
   width: calc((100% / 3) * 2);
   height: 70vh;
   overflow: hidden;
-  box-shadow: 2px 2px 10px rgb(173, 127, 0);
+  box-shadow: .125rem .125rem .625rem rgb(173, 127, 0);
   display: flex;
 }
 
@@ -33,7 +33,7 @@
 }
 
 .imagePlaceDiv {
-  padding: 10px;
+  padding: .625rem;
   box-sizing: border-box;
   width: 100%;
   height: 70%;
@@ -46,58 +46,58 @@
   background-color: rgba(192, 121, 80, 0.5);
   width: 90%;
   max-height: 90%;
-  border: 2px solid white;
-  border-radius: 5px;
+  border: .125rem solid white;
+  border-radius: .3125rem;
 }
 
 .errorDiv {
   position: absolute;
   /* background-color: rgba(255, 217, 217, 0.795); */
   background-color: #fff;
-  width: 220px;
-  height: 30px;
+  width: 13.75rem;
+  height: 1.875rem;
   box-sizing: border-box;
-  /* border: 1px solid red; */
-  border-radius: 5px;
+  /* border: .0625rem solid red; */
+  border-radius: .3125rem;
   color: red;
-  font-size: 13px;
+  font-size: .8125rem;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .imageErrorDiv {
-  left: 15px;
-  bottom: 130px;
+  left: .9375rem;
+  bottom: 8.125rem;
 }
 
 .singleInputErrorDiv {
-  top: 65px;
+  top: 4.0625rem;
 }
 
 .rangeInputErrorDiv {
-  top: 43px;
+  top: 2.6875rem;
 }
 
 .temperamentsErrorDiv {
-  top: 50px;
+  top: 3.125rem;
 }
 
 .imageInputDiv {
   width: 100;
   height: 30%;
   display: flex;
-  gap: 20px;
+  gap: 1.25rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
 .loadImageButton {
-  width: 100px;
-  height: 30px;
+  width: 6.25rem;
+  height: 1.875rem;
   background-color: #f7ce68;
-  border-radius: 5px;
+  border-radius: .3125rem;
   font-weight: bold;
   display: flex;
   justify-content: center;
@@ -120,7 +120,7 @@
 .dataSection {
   height: 100%;
   width: 50%;
-  padding: 20px;
+  padding: 1.25rem;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -128,42 +128,42 @@
 }
 
 .input {
-  height: 35px;
+  height: 2.1875rem;
   background-color: antiquewhite;
   border: none;
-  border-radius: 5px;
-  padding: 6px;
-  font-size: 15px;
+  border-radius: .3125rem;
+  padding: .375rem;
+  font-size: .9375rem;
   box-sizing: border-box;
 }
 
 .inputWithError {
-  height: 35px;
+  height: 2.1875rem;
   background-color: antiquewhite;
   outline: red;
-  border: 2px solid red;
-  border-radius: 5px;
-  padding: 6px;
-  font-size: 15px;
+  border: .125rem solid red;
+  border-radius: .3125rem;
+  padding: .375rem;
+  font-size: .9375rem;
   box-sizing: border-box;
 }
 
 .inputImageUrl:focus {
   outline: #fff;
-  border: 2px solid #fff;
+  border: .125rem solid #fff;
 }
 
 .inputContainer {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: .3125rem;
 }
 
 .inputRangeContainer {
   position: relative;
   display: flex;
-  gap: 20px;
+  gap: 1.25rem;
   justify-content: flex-start;
   align-items: center;
 }
@@ -179,36 +179,36 @@
 
 .temperamentsSection {
   background-color: #fff;
-  border: 1px solid rgb(189, 189, 189);
+  border: .0625rem solid rgb(189, 189, 189);
   box-sizing: border-box;
-  border-radius: 5px;
+  border-radius: .3125rem;
   width: calc(100% / 3);
   height: 70vh;
   overflow-y: scroll;
-  box-shadow: 2px 2px 10px rgb(173, 127, 0);
+  box-shadow: .125rem .125rem .625rem rgb(173, 127, 0);
 }
 
 .temperamentsSectionError {
-  /* border: 2px solid red; */
+  /* border: .125rem solid red; */
   outline-style: solid;
   outline-color: red;
   background-color: #fff;
   box-sizing: border-box;
-  border-radius: 5px;
+  border-radius: .3125rem;
   width: calc(100% / 3);
   height: 70vh;
   overflow-y: scroll;
-  box-shadow: 2px 2px 10px rgb(173, 127, 0);
+  box-shadow: .125rem .125rem .625rem rgb(173, 127, 0);
 }
 
 .temperamentsHeader {
   position: relative;
-  padding-top: 20px;
+  padding-top: 1.25rem;
   box-sizing: border-box;
   background-color: #ff7f00;
   color: #fff;
   width: 100%;
-  height: 90px;
+  height: 5.625rem;
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
@@ -223,11 +223,11 @@
 }
 
 .temperamentDiv {
-  border: 1px solid blue;
+  border: .0625rem solid blue;
 }
 
 .temperamentsSection::-webkit-scrollbar {
-  width: 12px;
+  width: .75rem;
 }
 
 .temperamentsSection::-webkit-scrollbar-track {
@@ -236,12 +236,12 @@
 
 .temperamentsSection::-webkit-scrollbar-thumb {
   background-color: #ff7f00;
-  border-radius: 20px;
-  border: 3px solid #f7ce68;
+  border-radius: 1.25rem;
+  border: .1875rem solid #f7ce68;
 }
 
 .temperamentsSectionError::-webkit-scrollbar {
-  width: 12px;
+  width: .75rem;
 }
 
 .temperamentsSectionError::-webkit-scrollbar-track {
@@ -250,8 +250,8 @@
 
 .temperamentsSectionError::-webkit-scrollbar-thumb {
   background-color: #ff7f00;
-  border-radius: 20px;
-  border: 3px solid #f7ce68;
+  border-radius: 1.25rem;
+  border: .1875rem solid #f7ce68;
 }
 
 .element {
@@ -283,7 +283,7 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  font-size: 14px;
+  font-size: .875rem;
 }
 
 .buttonContainer {
@@ -292,14 +292,14 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  gap: 5px;
+  gap: .3125rem;
 }
 
 .footerButton {
   background-color: #7b868e;
-  border-radius: 5px;
-  width: 100px;
-  height: 40px;
+  border-radius: .3125rem;
+  width: 6.25rem;
+  height: 2.5rem;
   display: flex;
   justify-content: center;
   align-items: center;

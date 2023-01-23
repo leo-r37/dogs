@@ -1,11 +1,11 @@
 .topBar {
-    /* border: 1px solid red; */
-    height: 70px;
+    /* border: .0625rem solid red; */
+    height: 4.375rem;
     display: flex;
   }
   
   .topBarDivs {
-    /* border: 1px solid black; */
+    /* border: .0625rem solid black; */
     height: 100%;
     width: 50%;
     display: flex;
@@ -19,27 +19,27 @@
     align-items: center;
     width: 80%;
     height: 70%;
-    border: 1px solid rgba(146, 146, 146, 0.5);
-    border-radius: 5px;
+    border: .0625rem solid rgba(146, 146, 146, 0.5);
+    border-radius: .3125rem;
   }
 
   .clearSearchDiv {
-    margin: 20px;
-    width: 100px;
-    height: 35px;
+    margin: 1.25rem;
+    width: 6.25rem;
+    height: 2.1875rem;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   
   .clearSearchButton {
-    padding: 3px 6px;
+    padding: .1875rem .375rem;
     box-sizing: border-box;
-    border-radius: 3px;
-    border: 2px solid black;
+    border-radius: .1875rem;
+    border: .125rem solid black;
     background-color: #000;
     color: #fff;
-    font-size: 12px;
+    font-size: .75rem;
     text-align: center;
     cursor: pointer;
   }

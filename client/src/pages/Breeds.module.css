@@ -1,7 +1,7 @@
 .main {
   display: flex;
   flex-direction: column;
-  /* padding: 30px; */
+  /* padding: 1.875rem; */
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
@@ -9,15 +9,15 @@
 
 .pageController {
   display: flex;
-  gap: 5px;
+  gap: .3125rem;
 }
 
 .cardsContainer {
-  margin: 20px 10px;
+  margin: 1.25rem .625rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  column-gap: 25px;
-  row-gap: 25px;
+  column-gap: 1.5625rem;
+  row-gap: 1.5625rem;
 }
 
 .link {
@@ -30,3 +30,13 @@
   transform: scale(1.02);
   transition: 0.5s;
 }
+
+/* @media (max-width: 31.25rem) {
+  h1{
+      margin: 1%;
+  }
+  .estiloresponsive{
+      float: right;
+      padding-left: .9375rem; 
+  }
+} */
