@@ -340,3 +340,31 @@
   outline-style: solid;
   outline-color: #a81414;
 }
+
+@media (max-width: 500px) {
+  .formDiv {
+      flex-direction: column;
+      width: 100%;
+  }
+  .imageAndDataDiv {
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+  }
+  .imageSection {
+    width: 100%;
+  }
+  .dataSection {
+    width: 100%;
+    height: auto;
+  }
+
+  .loadImageButton {
+    width: 60%;
+    margin-bottom: 1rem;
+  }
+  
+  .temperamentsSection {
+    width: 100%;
+  }
+}

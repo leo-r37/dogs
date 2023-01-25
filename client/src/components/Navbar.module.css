@@ -1,5 +1,5 @@
 .container {
-  padding: .9375rem;
+  padding: 0.9375rem;
   height: 3.125rem;
   display: flex;
 }
@@ -7,7 +7,7 @@
 .div {
   width: calc(100vw / 3);
   box-sizing: border-box;
-  /* border: .0625rem solid black; */
+  /* border: 0.0625rem solid black; */
   display: flex;
   align-items: center;
   padding: 1.25rem;
@@ -24,7 +24,7 @@
   transform: rotate(15deg);
   cursor: pointer;
   position: relative;
-  top: .625rem;
+  top: 0.625rem;
 }
 
 .buttons {
@@ -34,7 +34,7 @@
 .unselected {
   text-decoration: none;
   color: #000;
-  padding: .625rem;
+  padding: 0.625rem;
   box-sizing: border-box;
 }
 
@@ -42,9 +42,9 @@
   text-decoration: none;
   color: #fff;
   background-color: #ff7f00;
-  padding: .625rem;
-  border-radius: .3125rem;
-  box-shadow: .1875rem .1875rem .1875rem rgb(39, 39, 39);
+  padding: 0.625rem;
+  border-radius: 0.3125rem;
+  box-shadow: 0.1875rem 0.1875rem 0.1875rem rgb(39, 39, 39);
   transition: 0.5s;
   animation-duration: 0.5s;
   animation-name: createButton;
@@ -67,10 +67,24 @@
 @keyframes createButton {
   0% {
     margin-right: initial;
-
   }
 
   100% {
-    margin-right: .1875rem;
+    margin-right: 0.1875rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .div {
+    width: calc(100vw / 2);
+    padding: 0; 
+  }
+  .logo {
+    display: none;
+  }
+  .createButton {
+    animation-name: none;
+    width: 60%;
+    text-align: center;
   }
 }

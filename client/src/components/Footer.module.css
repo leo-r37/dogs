@@ -18,3 +18,11 @@
     outline-style: solid;
     outline-color: #000;
 }
+
+@media (max-width: 500px) {
+    .container {
+        padding: 10px;
+        box-sizing: border-box;
+        font-size: 15px;
+    }
+  }

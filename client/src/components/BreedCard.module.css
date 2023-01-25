@@ -1,12 +1,11 @@
 .container {
-  
   background-color: #fff;
-  border: .0625rem solid rgb(189, 189, 189);
-  border-radius: .3125rem;
+  border: 0.0625rem solid rgb(189, 189, 189);
+  border-radius: 0.3125rem;
   width: 18.75rem;
   height: 25rem;
   overflow: hidden;
-  box-shadow: .125rem .125rem .625rem rgb(173, 127, 0);
+  box-shadow: 0.125rem 0.125rem 0.625rem rgb(173, 127, 0);
 }
 
 .imageContainer {
@@ -23,30 +22,38 @@
 }
 
 .infoContainer {
-    padding: .625rem;
-    box-sizing: border-box;
-    height: 40%;
-    border: .0625rem solid rgb(189, 189, 189);
-    border-bottom-left-radius: .3125rem;
-    border-bottom-right-radius: .3125rem;
+  padding: 0.625rem;
+  box-sizing: border-box;
+  height: 40%;
+  border: 0.0625rem solid rgb(189, 189, 189);
+  border-bottom-left-radius: 0.3125rem;
+  border-bottom-right-radius: 0.3125rem;
 }
-
-
 
 .h2 {
   font-size: 1.0625rem;
 }
 
 .tempContainer {
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
 .temp {
-  font-size: .9375rem;
-    margin-top: .625rem;
-    background-color: #ff7f00;
-    color: #fff;
-    padding: .3125rem .625rem;
+  font-size: 0.9375rem;
+  margin-top: 0.625rem;
+  background-color: #ff7f00;
+  color: #fff;
+  padding: 0.3125rem 0.625rem;
+}
+
+@media (max-width: 500px) {
+  /* .container {
+    width: 30rem;
+    height: 40rem;
+  } */
+  /* html {
+    font-size: 16px;
+  } */
 }

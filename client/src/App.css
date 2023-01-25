@@ -55,3 +55,33 @@ h1 {
   background-color: #fff100;
   color: rgb(34, 34, 34);
 }
+
+@media (max-width: 1300px) {
+  html {
+      font-size: 14px;
+  }
+}
+
+@media (max-width: 1200px) {
+  html {
+      font-size: 12px;
+  }
+}
+
+@media (max-width: 1000px) {
+  html {
+      font-size: 13px;
+  }
+}
+
+@media (max-width: 800px) {
+  html {
+      font-size: 12px;
+  }
+}
+
+@media (max-width: 500px) {
+  html {
+      font-size: 18px;
+  }
+}

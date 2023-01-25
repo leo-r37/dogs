@@ -15,7 +15,7 @@ const Landing = ({ getBreeds, getData }) => {
         <p>Find the info about all dog's breeds, and create your owns!</p>
         <PrimaryButton to="/breeds" text="START" onClick={getData} />
       </div>
-      <div className={s.div}></div>
+      <div className={`${s.div} ${s.sideDiv}`}></div>
     </div>
   );
 };

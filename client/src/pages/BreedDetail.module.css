@@ -18,8 +18,8 @@
   width: 25rem;
   height: 12.5rem;
   background-color: #fff;
-  border: .0625rem solid gray;
-  border-radius: .3125rem;
+  border: 0.0625rem solid gray;
+  border-radius: 0.3125rem;
 }
 
 .alertTitleDiv {
@@ -67,9 +67,9 @@
   right: -4vw;
   width: 8vw;
   height: 8vw;
-  border-bottom: .3125rem solid #ff7f00;
-  border-left: .3125rem solid #ff7f00;
-  border-bottom-left-radius: .625rem;
+  border-bottom: 0.3125rem solid #ff7f00;
+  border-left: 0.3125rem solid #ff7f00;
+  border-bottom-left-radius: 0.625rem;
   transform: rotate(45deg);
 }
 
@@ -78,9 +78,9 @@
   left: -4vw;
   width: 8vw;
   height: 8vw;
-  border-bottom: .3125rem solid #ff7f00;
-  border-left: .3125rem solid #ff7f00;
-  border-bottom-left-radius: .625rem;
+  border-bottom: 0.3125rem solid #ff7f00;
+  border-left: 0.3125rem solid #ff7f00;
+  border-bottom-left-radius: 0.625rem;
   transform: rotate(225deg);
 }
 
@@ -104,9 +104,9 @@
   right: -4vw;
   width: 8vw;
   height: 8vw;
-  border-bottom: .3125rem solid rgba(100, 100, 100, 0.2);
-  border-left: .3125rem solid rgba(100, 100, 100, 0.2);
-  border-bottom-left-radius: .625rem;
+  border-bottom: 0.3125rem solid rgba(100, 100, 100, 0.2);
+  border-left: 0.3125rem solid rgba(100, 100, 100, 0.2);
+  border-bottom-left-radius: 0.625rem;
   transform: rotate(45deg);
 }
 
@@ -115,27 +115,27 @@
   left: -4vw;
   width: 8vw;
   height: 8vw;
-  border-bottom: .3125rem solid rgba(100, 100, 100, 0.2);
-  border-left: .3125rem solid rgba(100, 100, 100, 0.2);
-  border-bottom-left-radius: .625rem;
+  border-bottom: 0.3125rem solid rgba(100, 100, 100, 0.2);
+  border-left: 0.3125rem solid rgba(100, 100, 100, 0.2);
+  border-bottom-left-radius: 0.625rem;
   transform: rotate(225deg);
 }
 
 .main {
   background-color: #fff;
-  border: .0625rem solid rgb(189, 189, 189);
-  border-radius: .3125rem;
+  border: 0.0625rem solid rgb(189, 189, 189);
+  border-radius: 0.3125rem;
   width: 60%;
   height: 70vh;
   display: flex;
   overflow: hidden;
-  box-shadow: .125rem .125rem .625rem rgb(173, 127, 0);
+  box-shadow: 0.125rem 0.125rem 0.625rem rgb(173, 127, 0);
 }
 
 .imgDiv {
   background-color: #ff7f00;
   width: 60%;
-  padding: .625rem;
+  padding: 0.625rem;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
@@ -145,8 +145,8 @@
 .imgDiv img {
   max-width: 100%;
   max-height: 90%;
-  border: .125rem solid white;
-  border-radius: .3125rem;
+  border: 0.125rem solid white;
+  border-radius: 0.3125rem;
 }
 
 .dataDiv {
@@ -177,7 +177,7 @@
 .temperamentsDiv {
   height: 35%;
   display: flex;
-  gap: .3125rem;
+  gap: 0.3125rem;
   flex-wrap: wrap;
   align-content: space-around;
   justify-content: center;
@@ -187,7 +187,7 @@
   font-size: 1rem;
   background-color: #ff7f00;
   color: #fff;
-  padding: .3125rem .625rem;
+  padding: 0.3125rem 0.625rem;
 }
 
 .buttonsAreaContainer {
@@ -209,13 +209,13 @@
 
 .button {
   background-color: #7b868e;
-  border-radius: .3125rem;
+  border-radius: 0.3125rem;
   width: 6.25rem;
   height: 1.875rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: .625rem;
+  gap: 0.625rem;
   color: #fff;
   cursor: pointer;
   transition: 0.2s;
@@ -242,4 +242,30 @@
 .buttonDelete:focus {
   outline-style: solid;
   outline-color: #a81414;
+}
+
+@media (max-width: 500px) {
+  .pageControllerDiv {
+    display: none;
+  }
+  .pageControllerDivDisabled {
+    display: none;
+  }
+  .main {
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    font-size: 16px;
+  }
+  .imgDiv {
+    width: 100%;
+  }
+  .dataDiv {
+    width: 90%;
+    height: 200px;
+    padding: 1.875rem;
+  }
+  .infoDiv {
+    align-items: center;
+  }
 }

@@ -9,11 +9,11 @@
 
 .pageController {
   display: flex;
-  gap: .3125rem;
+  gap: 0.3125rem;
 }
 
 .cardsContainer {
-  margin: 1.25rem .625rem;
+  margin: 1.25rem 0.625rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   column-gap: 1.5625rem;
@@ -31,12 +31,20 @@
   transition: 0.5s;
 }
 
-/* @media (max-width: 31.25rem) {
-  h1{
-      margin: 1%;
+@media (max-width: 1000px) {
+  .cardsContainer {
+    grid-template-columns: 1fr 1fr 1fr;
   }
-  .estiloresponsive{
-      float: right;
-      padding-left: .9375rem; 
+}
+
+@media (max-width: 800px) {
+  .cardsContainer {
+    grid-template-columns: 1fr 1fr;
   }
-} */
+}
+
+@media (max-width: 500px) {
+  .cardsContainer {
+    grid-template-columns: 1fr;
+  }
+}
