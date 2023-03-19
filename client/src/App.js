@@ -8,7 +8,7 @@ import BreedDetail from "./pages/BreedDetail.jsx";
 import EditBreed from "./pages/EditBreed.jsx";
 
 import axios from "axios";
-axios.defaults.baseURL = REACT_APP_BACK_URL;
+axios.defaults.baseURL = process.env.REACT_APP_BACK_URL;
 
 function App() {
   return (
