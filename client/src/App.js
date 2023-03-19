@@ -8,8 +8,7 @@ import BreedDetail from "./pages/BreedDetail.jsx";
 import EditBreed from "./pages/EditBreed.jsx";
 
 import axios from "axios";
-axios.defaults.baseURL = 'http://localhost:3001/'
-// axios.defaults.baseURL = 'https://dogs-production-3886.up.railway.app/'
+axios.defaults.baseURL = REACT_APP_BACK_URL;
 
 function App() {
   return (
@@ -18,7 +17,7 @@ function App() {
         <Route exact path="/" component={Landing} />
         <Route path="/create" component={CreateBreed} />
         <Route exact path="/breeds" component={Breeds} />
-        <Route path="/breeds/:id" component={BreedDetail} />        
+        <Route path="/breeds/:id" component={BreedDetail} />
         <Route path="/edit/:id" component={EditBreed} />
       </Switch>
     </div>
